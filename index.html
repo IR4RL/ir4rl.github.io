@@ -28,15 +28,19 @@
   <link rel="icon" type="image/png" href="static/images/favicon.png">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans"
   rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap"
+  rel="stylesheet">
 
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
   <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/interactive.css">
 
   <script defer src="static/js/fontawesome.all.min.js"></script>
   <script src="static/js/index.js"></script>
+  <script defer src="static/js/interactive-demo.js"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
@@ -76,6 +80,35 @@
                         <i class="ai ai-arxiv"></i>
                         <span>arXiv</span>
                       </a>
+
+                      <!-- Interactive demo link -->
+                      <a href="#interactive-demo" class="link-btn">
+                        <i class="fas fa-hand-pointer"></i>
+                        <span>Interactive Game</span>
+                      </a>
+
+                      <!-- Model dropdown -->
+                      <div class="link-menu" data-menu>
+                        <button type="button" class="link-btn link-menu-trigger" aria-haspopup="menu" aria-expanded="false" aria-controls="lm-model-panel">
+                          <span class="link-btn-emoji" aria-hidden="true">🤗</span>
+                          <span>Models</span>
+                          <i class="fas fa-chevron-down caret"></i>
+                        </button>
+                        <div class="link-menu-panel" id="lm-model-panel" role="menu" aria-hidden="true">
+                          <span class="lm-row" role="menuitem">
+                            <span class="lm-text">
+                              <span class="lm-label">Image-to-SVG</span>
+                              <span class="lm-meta">Coming soon</span>
+                            </span>
+                          </span>
+                          <span class="lm-row" role="menuitem">
+                            <span class="lm-text">
+                              <span class="lm-label">Image-to-TikZ</span>
+                              <span class="lm-meta">Coming soon</span>
+                            </span>
+                          </span>
+                        </div>
+                      </div>
 
                       <!-- Github link -->
                       <span class="link-btn is-disabled">
@@ -146,6 +179,90 @@
   </div>
 </section>
 <!-- End Paper Method -->
+
+
+<!-- Interactive Demo -->
+<section class="section" id="interactive-demo">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Try a Game</h2>
+    <div class="content has-text-justified demo-intro">
+      <p>
+        Step into the VLM's shoes. Trace the target below one segment at a time with a sequence of Line
+        and Curve segments, and watch each choice score a render-progress reward \(\Delta_j\).
+        <strong>Chase the highest \(\Delta_j\)</strong> on every step (arrows on the right plot), then hit <strong>Finish Drawing</strong> to see your outcome reward.
+      </p>
+    </div>
+
+    <div class="demo-card demo-code-card">
+      <span class="demo-panel-label">Generated code</span>
+      <div class="demo-code"><div class="demo-code-scroll"><code id="demo-code"></code></div><code class="demo-code-suffix">" /&gt;&lt;/svg&gt;</code></div>
+    </div>
+
+    <div class="demo-grid">
+      <div class="demo-card demo-canvas-card">
+        <div class="demo-toolbar">
+          <div class="tool-group" role="group" aria-label="Segment type">
+            <button class="tool-btn is-active" data-tool="line" id="demo-tool-line">Line</button>
+            <button class="tool-btn" data-tool="curve" id="demo-tool-curve">Curve</button>
+          </div>
+          <div class="demo-toolbar-spacer"></div>
+          <label class="ghost-toggle">
+            <input type="checkbox" id="demo-ghost-toggle" checked>
+            <span>Overlay target on canvas</span>
+          </label>
+        </div>
+
+        <div class="demo-canvas-row">
+          <div class="demo-panel">
+            <span class="demo-panel-label">Target</span>
+            <div class="demo-canvas-wrap">
+              <canvas id="demo-target-canvas" width="440" height="440"></canvas>
+            </div>
+          </div>
+          <div class="demo-panel">
+            <span class="demo-panel-label">Your drawing</span>
+            <div class="demo-canvas-wrap">
+              <canvas id="demo-canvas" width="440" height="440"></canvas>
+              <div class="demo-pending-actions" id="demo-pending-actions" hidden>
+                <span class="drag-handle" id="demo-drag-handle" aria-hidden="true">&#8942;&#8942;</span>
+                <span class="pending-label">Edit handles</span>
+                <button class="tool-btn confirm-btn" id="demo-confirm">Add segment &check;</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-footer-row">
+          <p class="demo-hint" id="demo-hint">Click to place your first point, then keep clicking to add segments.</p>
+          <div>
+            <button class="tool-btn standalone" id="demo-undo">Undo</button>
+            <button class="tool-btn standalone" id="demo-reset">Reset</button>
+            <button class="tool-btn finish-btn" id="demo-finish" disabled>Finish Drawing</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-card demo-plot-card">
+        <div class="demo-stats">
+          <div class="stat">
+            <span class="stat-label">Visual score</span>
+            <span class="stat-value" id="demo-score">&mdash;</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Step</span>
+            <span class="stat-value" id="demo-step">0</span>
+          </div>
+          <div class="stat" id="demo-outcome" hidden>
+            <span class="stat-label">Outcome reward</span>
+            <span class="stat-value is-accent" id="demo-outcome-value">&mdash;</span>
+          </div>
+        </div>
+        <svg id="demo-plot" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid meet"></svg>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Interactive Demo -->
 
 
 <!-- Comparison -->

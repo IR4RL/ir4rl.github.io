@@ -52,3 +52,30 @@ window.addEventListener('scroll', function() {
         scrollButton.classList.remove('visible');
     }
 });
+
+// Model dropdown menu
+document.querySelectorAll('.link-menu[data-menu]').forEach(function(menu) {
+    const trigger = menu.querySelector('.link-menu-trigger');
+    const panel = menu.querySelector('.link-menu-panel');
+    if (!trigger || !panel) return;
+
+    function close() {
+        trigger.setAttribute('aria-expanded', 'false');
+        panel.setAttribute('aria-hidden', 'true');
+    }
+
+    trigger.addEventListener('click', function(ev) {
+        ev.preventDefault();
+        const open = trigger.getAttribute('aria-expanded') === 'true';
+        trigger.setAttribute('aria-expanded', open ? 'false' : 'true');
+        panel.setAttribute('aria-hidden', open ? 'true' : 'false');
+    });
+
+    document.addEventListener('click', function(ev) {
+        if (!menu.contains(ev.target)) close();
+    });
+
+    document.addEventListener('keydown', function(ev) {
+        if (ev.key === 'Escape') close();
+    });
+});

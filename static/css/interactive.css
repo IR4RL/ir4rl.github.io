@@ -1,0 +1,416 @@
+/* --- Interactive render-progress demo --- */
+:root {
+  --demo-green: #16a34a;
+  --demo-red: #dc2626;
+  --demo-neutral: #9aa1ac;
+}
+
+#interactive-demo .container.is-max-desktop {
+  max-width: 1180px;
+}
+
+.demo-intro {
+  margin-top: 1.5rem;
+}
+
+.demo-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 560px) minmax(0, 1fr);
+  gap: 1.75rem;
+  align-items: stretch;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 1000px) {
+  .demo-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.demo-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 1.25rem;
+}
+
+/* The canvas and plot cards vary in natural height (curve edits, hint
+   text rewrapping, etc.) — stretch them to the row's tallest so their
+   bottoms line up. Content is pinned to the top (not centered) so it
+   never shifts position as the card's own height changes during use —
+   any slack just becomes empty space at the bottom. */
+.demo-canvas-card,
+.demo-plot-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* --- Toolbar --- */
+.demo-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.9rem;
+}
+
+.tool-group {
+  display: inline-flex;
+  background: var(--color-code-bg);
+  border-radius: 999px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.tool-btn {
+  font-family: inherit;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--color-muted);
+  cursor: pointer;
+  transition: var(--transition);
+  line-height: 1.1;
+}
+
+.tool-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.tool-group .tool-btn:hover {
+  color: var(--color-text);
+}
+
+.tool-group .tool-btn.is-active {
+  background: var(--color-card);
+  color: var(--color-accent);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+  font-weight: 600;
+}
+
+.tool-btn.standalone {
+  background: var(--color-card);
+  border-color: var(--color-card-border);
+  color: var(--color-text);
+}
+
+.tool-btn.standalone:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.tool-btn.standalone:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.tool-btn.standalone:disabled:hover {
+  border-color: var(--color-card-border);
+  color: var(--color-text);
+}
+
+.demo-toolbar-spacer {
+  flex: 1;
+}
+
+.ghost-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.ghost-toggle input {
+  accent-color: var(--color-accent);
+}
+
+/* --- Canvas --- */
+.demo-canvas-wrap {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--color-card-border);
+  background: #fff;
+  line-height: 0;
+}
+
+.demo-canvas-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+}
+
+.demo-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.demo-panel-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+}
+
+#demo-canvas,
+#demo-target-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  touch-action: none;
+}
+
+#demo-canvas {
+  cursor: crosshair;
+}
+
+#demo-canvas.is-locked {
+  cursor: default;
+}
+
+.demo-pending-actions {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, .95);
+  border: 1px solid var(--color-card-border);
+  border-radius: 999px;
+  padding: 4px;
+  box-shadow: var(--shadow-sm);
+  white-space: nowrap;
+}
+
+.demo-pending-actions[hidden] {
+  display: none;
+}
+
+.demo-pending-actions.is-dragging {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .18);
+}
+
+.drag-handle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 24px;
+  padding: 0 2px;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  letter-spacing: -2px;
+  line-height: 1;
+  color: var(--color-muted);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.drag-handle:hover {
+  color: var(--color-text);
+  background: rgba(0, 0, 0, .05);
+}
+
+.demo-pending-actions.is-dragging .drag-handle {
+  cursor: grabbing;
+  color: var(--color-accent);
+}
+
+/* Touch-only: bigger tap targets. A fingertip is far less precise than a
+   mouse cursor, so bump the drag grip and buttons up here — mouse/trackpad
+   users never match this query and see none of it. */
+@media (pointer: coarse) {
+  .drag-handle {
+    width: 26px;
+    height: 32px;
+  }
+
+  .tool-btn {
+    padding: 0.55rem 1.05rem;
+  }
+}
+
+.pending-label {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  padding: 0 0.3rem 0 0.1rem;
+}
+
+.confirm-btn,
+.finish-btn {
+  background: var(--color-accent);
+  color: #fff;
+  border-color: var(--color-accent);
+}
+
+.confirm-btn:hover,
+.finish-btn:hover:not(:disabled) {
+  background: #16419a;
+}
+
+.demo-footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+  margin-top: 0.9rem;
+}
+
+.demo-footer-row > div {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.demo-hint {
+  flex: 1;
+  min-width: 160px;
+  font-size: 0.78rem;
+  color: var(--color-muted);
+}
+
+/* --- Stats + plot --- */
+.demo-stats {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.stat[hidden] {
+  display: none;
+}
+
+.stat-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+}
+
+.stat-value {
+  font-size: 1.25rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text);
+}
+
+.stat-value.is-positive {
+  color: var(--demo-green);
+}
+
+.stat-value.is-negative {
+  color: var(--demo-red);
+}
+
+.stat-value.is-accent {
+  color: var(--color-accent);
+}
+
+#demo-plot {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.demo-plot-empty {
+  font-size: 0.82rem;
+  fill: var(--color-muted);
+}
+
+.demo-axis-label {
+  font-size: 9px;
+  fill: var(--color-muted);
+  font-family: inherit;
+}
+
+.demo-delta-label {
+  font-size: 9.5px;
+  font-weight: 600;
+  font-family: inherit;
+}
+
+/* --- Generated-code strip --- */
+.demo-code-card {
+  margin-top: 2.25rem;
+}
+
+.demo-code-card .demo-panel-label {
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
+.demo-code {
+  margin: 0;
+  display: flex;
+  align-items: stretch;
+  background: var(--color-code-bg);
+  border-radius: 10px;
+  font-family: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+  font-size: 0.88rem;
+  box-sizing: border-box;
+}
+
+/* The opening tag + growing `d` attribute scrolls on its own; the closing
+   tags live outside that scroll region so they're always visible instead
+   of getting pushed off-screen as the path grows. */
+.demo-code-scroll {
+  overflow-x: auto;
+  flex: 1;
+  min-width: 0;
+  scrollbar-width: thin;
+  padding: 0.75rem 0 0.75rem 1rem;
+}
+
+.demo-code-scroll code {
+  white-space: pre;
+}
+
+/* Bulma's default `code {}` rule (used elsewhere for inline code) sets its
+   own opaque background, font-size and padding — left unchecked, it paints
+   a square background on these elements that covers the rounded corner of
+   the outer `.demo-code` pill on the right edge. Neutralize it here. */
+#demo-code {
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.demo-code-suffix {
+  flex-shrink: 0;
+  white-space: pre;
+  color: var(--color-muted);
+  background: transparent;
+  font-size: inherit;
+  font-weight: inherit;
+  padding: 0.75rem 1rem 0.75rem 0;
+}
+
+.demo-code .code-muted {
+  color: var(--color-muted);
+}
+
+.demo-code .code-new {
+  color: var(--color-accent);
+  font-weight: 700;
+}

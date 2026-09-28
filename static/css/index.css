@@ -34,12 +34,27 @@ body {
   padding-bottom: 3rem;
 }
 
+.teaser .subtitle {
+  font-size: 1.05rem;
+  color: var(--color-muted);
+  margin: 1rem auto 0;
+}
+
 .publication-title {
-    font-family: 'Google Sans', sans-serif;
+    font-family: 'Newsreader', Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    font-size: 3.6rem;
+    line-height: 1.15;
+}
+
+.section .title {
+    font-family: 'Newsreader', Georgia, serif;
+    font-weight: 400;
 }
 
 #hero-header .container.is-max-desktop {
-    max-width: 1100px;
+    max-width: 1300px;
 }
 
 .publication-authors {
@@ -63,11 +78,14 @@ body {
 }
 
 .publication-authors a {
-   color: var(--color-accent) !important;
+   color: inherit !important;
+   text-decoration: none;
+   border-bottom: 1px solid transparent;
+   transition: border-color 0.15s ease;
 }
 
 .publication-authors a:hover {
-    text-decoration: underline;
+    border-bottom-color: var(--color-accent);
 }
 
 .author-block {
@@ -125,6 +143,91 @@ a.link-btn:hover {
   background: rgba(0, 0, 0, .03);
 }
 
+/* --- Model dropdown --- */
+.link-menu {
+  position: relative;
+  display: inline-flex;
+}
+
+.link-menu-trigger {
+  cursor: pointer;
+  transition: var(--transition);
+  font: inherit;
+}
+
+.link-menu-trigger:hover {
+  background: rgba(0, 0, 0, .04);
+  border-color: rgba(0, 0, 0, .2);
+}
+
+.link-menu-trigger .caret {
+  font-size: 0.7rem;
+  transition: transform 0.18s ease;
+}
+
+.link-menu-trigger[aria-expanded="true"] {
+  background: rgba(0, 0, 0, .04);
+  border-color: rgba(0, 0, 0, .2);
+}
+
+.link-menu-trigger[aria-expanded="true"] .caret {
+  transform: rotate(180deg);
+}
+
+.link-menu-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translate(-50%, -4px);
+  min-width: 220px;
+  padding: 6px;
+  background: var(--color-card);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 80;
+  text-align: left;
+}
+
+.link-menu:hover .link-menu-panel,
+.link-menu:focus-within .link-menu-panel,
+.link-menu-trigger[aria-expanded="true"] + .link-menu-panel {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+
+.link-menu-panel .lm-row {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: default;
+}
+
+.link-menu-panel .lm-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.link-menu-panel .lm-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.link-menu-panel .lm-meta {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+}
+
 /* --- BibTeX / code card --- */
 .code-card {
   position: relative;
@@ -145,8 +248,8 @@ a.link-btn:hover {
 
 .code-card code {
   background: transparent !important;
-  color: var(--color-text) !important;
-  font-family: 'SF Mono', 'Monaco', 'Cascadia Code', 'Roboto Mono', monospace !important;
+  color: var(--color-muted) !important;
+  font-family: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Cascadia Code', monospace !important;
 }
 
 .copy-btn {

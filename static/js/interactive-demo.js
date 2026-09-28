@@ -7,8 +7,8 @@
 (function () {
   const DISPLAY_SIZE = 440;
   const COMPUTE_SIZE = 96;
-  const FILL_COLOR = '#FFD401';
-  const TARGET_SRC = 'static/images/start.png';
+  const FILL_COLOR = '#FBB03B';
+  const TARGET_SRC = 'static/images/star.png';
 
   const root = document.getElementById('interactive-demo');
   if (!root) return;

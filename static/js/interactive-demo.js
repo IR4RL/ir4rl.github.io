@@ -35,6 +35,8 @@
   const finishBtn = document.getElementById('demo-finish');
   const outcomeEl = document.getElementById('demo-outcome');
   const outcomeValueEl = document.getElementById('demo-outcome-value');
+  const takeoverBtn = document.getElementById('demo-takeover');
+  const autoplayCursorEl = document.getElementById('demo-autoplay-cursor');
 
   // Coarse (touch) pointers get a bigger hit zone and a bigger drawn dot for
   // the bezier handles — a fingertip is far less precise than a mouse cursor.
@@ -45,6 +47,8 @@
   const HINT_DEFAULT = 'Click to place your first point, then keep clicking to add segments.';
   const HINT_PENDING = 'Drag the handles to shape the curve, then confirm to score the step.';
   const HINT_CONCLUDED = 'Drawing complete — see the outcome reward on the right. Click Reset to start over.';
+  const HINT_AUTOPLAY = 'Watching a scripted rollout — hit Take over any time to draw it yourself.';
+  const HINT_AUTOPLAY_HOLD = 'Outcome reward reached — looping again shortly. Hit Take over to draw it yourself.';
 
   // The target canvas is a real, visible panel (always-on reference so the
   // ghost overlay toggle is optional, not load-bearing). scoreCanvas is an
@@ -79,6 +83,8 @@
   let pending = null; // {x,y,c1:{x,y},c2:{x,y}} — an uncommitted curve segment
   let draggingHandle = null; // 'c1' | 'c2' | null
   let concluded = false; // true once "Finish Drawing" has locked in the outcome
+  let autoPlaying = false;
+  let autoPlayTimer = null;
 
   // ---------------------------------------------------------------------
   // Math: exact port of visualize_path_rendering.compute_normalized_reward
@@ -489,7 +495,7 @@
   }
 
   function updateFinishAvailability() {
-    finishBtn.disabled = !!pending || concluded || path.length < 2;
+    finishBtn.disabled = !!pending || concluded || autoPlaying || path.length < 2;
   }
 
   function finishDrawing() {
@@ -504,6 +510,207 @@
     canvas.classList.add('is-locked');
     hintEl.textContent = HINT_CONCLUDED;
     updateFinishAvailability();
+  }
+
+  // ---------------------------------------------------------------------
+  // Autoplay: a scripted rollout that traces the star, starting the moment
+  // the page loads so a first-time visitor sees the mechanic without
+  // needing to click anything first. Reuses commitPoint() directly — a
+  // scripted step is indistinguishable from a real click to the rest of
+  // the app, so scoring/plot/code-strip all update identically.
+  // ---------------------------------------------------------------------
+  function setAutoPlayControlsDisabled(disabled) {
+    lineToolBtn.disabled = disabled;
+    curveToolBtn.disabled = disabled;
+    undoBtn.disabled = disabled;
+    resetBtn.disabled = disabled;
+    updateFinishAvailability();
+  }
+
+  function setCursorToPoint(pt) {
+    autoplayCursorEl.style.left = `${(pt.x / DISPLAY_SIZE) * 100}%`;
+    autoplayCursorEl.style.top = `${(pt.y / DISPLAY_SIZE) * 100}%`;
+  }
+
+  // Points the fake cursor at a real button's center (e.g. "Add segment"),
+  // converting its rendered position back into the same 0..DISPLAY_SIZE
+  // space setCursorToPoint() uses, so the two can share one code path.
+  function setCursorToElementCenter(el) {
+    const wrapRect = canvasWrapEl.getBoundingClientRect();
+    const elRect = el.getBoundingClientRect();
+    const xPx = elRect.left + elRect.width / 2 - wrapRect.left;
+    const yPx = elRect.top + elRect.height / 2 - wrapRect.top;
+    setCursorToPoint({
+      x: (xPx / wrapRect.width) * DISPLAY_SIZE,
+      y: (yPx / wrapRect.height) * DISPLAY_SIZE,
+    });
+  }
+
+  function buildAutoPlayScript() {
+    // Explicit 10-vertex star outline, hand-fit to the target image.
+    // Traced vertex by vertex; one edge is scripted as a Curve instead of
+    // a Line to showcase that tool too.
+    const verts = [
+      { x: 159, y: 144 },
+      { x: 220, y: 34 },
+      { x: 298, y: 153 },
+      { x: 417, y: 171 },
+      { x: 316, y: 274 },
+      { x: 341, y: 402 },
+      { x: 224, y: 351 },
+      { x: 100, y: 403 },
+      { x: 106, y: 279 },
+      { x: 21, y: 177 },
+    ];
+    // The curve step's control points aren't precomputed here — it's
+    // played back through the real startPendingCurve()/confirmPending()
+    // flow below, which derives its own default handles the same way a
+    // real click on the Curve tool would.
+    const curveAt = 4;
+    return verts.map((p, i) => {
+      if (i === 0) return { x: p.x, y: p.y };
+      return { type: i === curveAt ? 'C' : 'L', x: p.x, y: p.y };
+    });
+  }
+
+  // A trimmed-down reset used between autoplay cycles: clears the drawing
+  // like reset() does, but leaves the tool/undo/reset buttons alone since
+  // they should stay disabled for the whole autoplay session, not flicker
+  // enabled between loops.
+  function resetForAutoPlay() {
+    path = [];
+    history = [{ reward: baselineReward, delta: 0 }];
+    hoverPoint = null;
+    concluded = false;
+    outcomeEl.hidden = true;
+    canvas.classList.remove('is-locked');
+    drawDisplayCanvas();
+    updateStats();
+    renderPlot();
+    updateCode();
+    updateFinishAvailability();
+  }
+
+  // Locks in the outcome the same way finishDrawing() does, callable mid
+  // autoplay where the real Finish Drawing button stays disabled.
+  function autoFinishDrawing() {
+    if (pending || concluded || path.length < 2) return;
+    concluded = true;
+    const outcome = history[history.length - 1].reward;
+    outcomeValueEl.textContent = outcome.toFixed(3);
+    outcomeEl.hidden = false;
+    canvas.classList.add('is-locked');
+    hintEl.textContent = HINT_AUTOPLAY_HOLD;
+  }
+
+  function startAutoPlay() {
+    if (autoPlaying || pending) return;
+    autoPlaying = true;
+    takeoverBtn.textContent = 'Take over';
+    setAutoPlayControlsDisabled(true);
+    runAutoPlayCycle();
+  }
+
+  function runAutoPlayCycle() {
+    if (!autoPlaying) return;
+    resetForAutoPlay();
+    hintEl.textContent = HINT_AUTOPLAY;
+
+    const script = buildAutoPlayScript();
+    autoplayCursorEl.hidden = false;
+    setCursorToPoint(script[0]);
+
+    let i = 0;
+    const MOVE_MS = 520;
+    const PAUSE_MS = 260;
+    const PENDING_HOLD_MS = 650;
+    const PRE_FINISH_MS = 500;
+    const FINISH_HOLD_MS = 2200;
+
+    function advance() {
+      autoplayCursorEl.classList.remove('is-clicking');
+      i++;
+      step();
+    }
+
+    function step() {
+      if (!autoPlaying) return;
+      if (i >= script.length) {
+        autoPlayTimer = setTimeout(() => {
+          if (!autoPlaying) return;
+          autoFinishDrawing();
+          autoPlayTimer = setTimeout(() => {
+            if (!autoPlaying) return;
+            runAutoPlayCycle(); // loop
+          }, FINISH_HOLD_MS);
+        }, PRE_FINISH_MS);
+        return;
+      }
+      const pt = script[i];
+      if (pt.type === 'C') {
+        playCurveStep(pt);
+        return;
+      }
+      setCursorToPoint(pt);
+      autoPlayTimer = setTimeout(() => {
+        if (!autoPlaying) return;
+        autoplayCursorEl.classList.add('is-clicking');
+        commitPoint(pt);
+        autoPlayTimer = setTimeout(advance, PAUSE_MS);
+      }, MOVE_MS);
+    }
+
+    // The scripted curve step goes through the exact same tool-switch +
+    // pending-preview + confirm-click flow a real user would use, instead
+    // of silently committing a 'C' command — otherwise it's unclear how
+    // the curve even got there.
+    function playCurveStep(pt) {
+      setTool('curve');
+      setCursorToPoint(pt);
+      autoPlayTimer = setTimeout(() => {
+        if (!autoPlaying) return;
+        autoplayCursorEl.classList.add('is-clicking');
+        startPendingCurve({ x: pt.x, y: pt.y });
+        autoplayCursorEl.classList.remove('is-clicking');
+        autoPlayTimer = setTimeout(() => {
+          if (!autoPlaying) return;
+          setCursorToElementCenter(confirmBtn);
+          autoPlayTimer = setTimeout(() => {
+            if (!autoPlaying) return;
+            autoplayCursorEl.classList.add('is-clicking');
+            confirmPending(); // re-enables tool/undo/reset — restore below
+            setTool('line');
+            setAutoPlayControlsDisabled(true);
+            hintEl.textContent = HINT_AUTOPLAY;
+            autoPlayTimer = setTimeout(advance, PAUSE_MS);
+          }, MOVE_MS);
+        }, PENDING_HOLD_MS);
+      }, MOVE_MS);
+    }
+
+    autoPlayTimer = setTimeout(step, MOVE_MS);
+  }
+
+  function stopAutoPlay() {
+    clearTimeout(autoPlayTimer);
+    autoPlaying = false;
+    autoplayCursorEl.hidden = true;
+    autoplayCursorEl.classList.remove('is-clicking');
+    takeoverBtn.textContent = 'Watch Playthrough';
+    // If interrupted mid-curve-step, the scripted pending curve is still
+    // open — reset() no-ops while pending, so clear it first or takeOver
+    // would leave the pending pill stuck on screen.
+    if (pending) {
+      pending = null;
+      pendingActionsEl.hidden = true;
+    }
+    setAutoPlayControlsDisabled(false);
+    reset();
+  }
+
+  function takeOver() {
+    if (!autoPlaying) return;
+    stopAutoPlay();
   }
 
   // ---------------------------------------------------------------------
@@ -588,6 +795,7 @@
   }
 
   canvas.addEventListener('pointerdown', (evt) => {
+    if (autoPlaying) { takeOver(); return; }
     if (concluded) return;
     const pt = canvasPointFromEvent(evt);
 
@@ -619,7 +827,7 @@
       drawDisplayCanvas();
       return;
     }
-    if (!concluded && path.length > 0 && !pending) {
+    if (!concluded && !autoPlaying && path.length > 0 && !pending) {
       hoverPoint = pt;
       drawDisplayCanvas();
     }
@@ -646,6 +854,13 @@
   resetBtn.addEventListener('click', reset);
   finishBtn.addEventListener('click', finishDrawing);
   ghostToggle.addEventListener('change', drawDisplayCanvas);
+  takeoverBtn.addEventListener('click', () => {
+    if (autoPlaying) {
+      takeOver();
+    } else {
+      startAutoPlay();
+    }
+  });
 
   // ---------------------------------------------------------------------
   // Drag-to-reposition the pending-segment pill, so it can be moved off
@@ -712,6 +927,7 @@
     renderPlot();
     updateCode();
     updateFinishAvailability();
+    startAutoPlay();
   };
   targetImg.src = TARGET_SRC;
 })();

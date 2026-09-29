@@ -178,6 +178,47 @@
   cursor: default;
 }
 
+/* --- Autoplay: inline "Take over" control + fake cursor --- */
+.demo-takeover-btn {
+  background: var(--color-accent);
+  color: #fff;
+  border-color: var(--color-accent);
+}
+
+.demo-takeover-btn:hover {
+  background: #16419a;
+}
+
+.demo-autoplay-cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(26, 86, 196, .85);
+  border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .3);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: left 0.45s cubic-bezier(.4, 0, .2, 1), top 0.45s cubic-bezier(.4, 0, .2, 1);
+  z-index: 6;
+}
+
+.demo-autoplay-cursor[hidden] {
+  display: none;
+}
+
+.demo-autoplay-cursor.is-clicking {
+  animation: demo-cursor-pulse 0.3s ease;
+}
+
+@keyframes demo-cursor-pulse {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  40% { transform: translate(-50%, -50%) scale(0.55); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
 .demo-pending-actions {
   position: absolute;
   bottom: 12px;
@@ -375,6 +416,13 @@
    of getting pushed off-screen as the path grows. */
 .demo-code-scroll {
   overflow-x: auto;
+  overflow-y: hidden;
+  /* Fixed height so a horizontal scrollbar (on systems where it takes up
+     real space instead of overlaying) doesn't grow the box and shift
+     everything below it — the scrollbar just eats into this reserved
+     space instead of adding to it. */
+  height: 2.75rem;
+  box-sizing: border-box;
   flex: 1;
   min-width: 0;
   scrollbar-width: thin;

@@ -34,10 +34,33 @@ body {
   padding-bottom: 3rem;
 }
 
+.teaser-video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .teaser .subtitle {
   font-size: 1.05rem;
   color: var(--color-muted);
   margin: 1rem auto 0;
+}
+
+.tldr {
+    width: fit-content;
+    max-width: 1300px;
+    margin: 1.75rem auto 0;
+    padding: 0.75rem 1.25rem;
+    border-top: 1px solid var(--color-card-border);
+    border-bottom: 1px solid var(--color-card-border);
+    text-align: center;
+    font-size: 1.25rem;
+    line-height: 1.55;
+    color: var(--color-muted);
+}
+
+.tldr strong {
+    color: var(--color-text);
 }
 
 .publication-title {

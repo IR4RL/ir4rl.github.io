@@ -1,0 +1,16 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+\node (a) at (0,0) {$\mathfrak{su}$};
+\node (b) at (4,0) {$\mathfrak{pi}\mathfrak{su}$};
+\node (c) at (0,-2) {$SU$};
+\node (d) at (4,-2) {$piSU$};
+\draw[->] (a) to node[above] {SWAP invariance} (b);
+\draw[->] (a) to node[left] {exp} (c);
+\draw[->] (b) to node[right] {exp} (d);
+\draw[->] (c) to node[below] {SWAP invariance} (d);
+\node at (2,-.3) {symmetrization};
+\end{tikzpicture}
+\end{document}

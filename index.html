@@ -273,7 +273,7 @@
 
 <!-- Comparison -->
 <section class="section">
-  <div class="container is-max-desktop">
+  <div class="container is-max-widescreen">
     <h2 class="title is-3 has-text-centered">Comparison</h2>
 
     <div class="content">
@@ -292,6 +292,491 @@
   </div>
 </section>
 <!-- End Comparison -->
+
+
+<!-- Qualitative Results -->
+<section class="section" id="qualitative-results">
+  <div class="container is-max-widescreen">
+    <h2 class="title is-3 has-text-centered">Qualitative Results</h2>
+
+    <div class="content">
+      <h3 class="title is-4 has-text-centered">Image-to-SVG</h3>
+      <div class="qual-toggle-wrap">
+        <div class="qual-toggle" role="group" aria-label="Image-to-SVG view mode">
+          <button type="button" class="qual-toggle-btn" data-caption="Rendered output" onclick="setQualMode('qual-grid-svg', 'image', this)">Image</button>
+          <button type="button" class="qual-toggle-btn is-active" data-caption="Path-by-path drawing of the SVG" onclick="setQualMode('qual-grid-svg', 'gif', this)">GIF</button>
+          <button type="button" class="qual-toggle-btn" data-caption="Generated SVG code" onclick="setQualMode('qual-grid-svg', 'code', this)">Code</button>
+        </div>
+        <p class="qual-caption" id="qual-caption-svg">Path-by-path drawing of the SVG</p>
+      </div>
+      <div class="qual-grid" id="qual-grid-svg" data-mode="gif">
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/svg/000001_src.png" alt="Target image 1" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/svg/000001.svg">
+            <img class="qual-view qual-view-image" src="static/qual/svg/000001.png" alt="Generated SVG output 1" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/svg/000001.gif" alt="Generation process 1" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/svg/000002_src.png" alt="Target image 2" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/svg/000002.svg">
+            <img class="qual-view qual-view-image" src="static/qual/svg/000002.png" alt="Generated SVG output 2" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/svg/000002.gif" alt="Generation process 2" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/svg/000003_src.png" alt="Target image 3" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/svg/000003.svg">
+            <img class="qual-view qual-view-image" src="static/qual/svg/000003.png" alt="Generated SVG output 3" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/svg/000003.gif" alt="Generation process 3" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/svg/000004_src.png" alt="Target image 4" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/svg/000004.svg">
+            <img class="qual-view qual-view-image" src="static/qual/svg/000004.png" alt="Generated SVG output 4" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/svg/000004.gif" alt="Generation process 4" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/svg/000005_src.png" alt="Target image 5" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/svg/000005.svg">
+            <img class="qual-view qual-view-image" src="static/qual/svg/000005.png" alt="Generated SVG output 5" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/svg/000005.gif" alt="Generation process 5" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/svg/000006_src.png" alt="Target image 6" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/svg/000006.svg">
+            <img class="qual-view qual-view-image" src="static/qual/svg/000006.png" alt="Generated SVG output 6" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/svg/000006.gif" alt="Generation process 6" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/svg/000007_src.png" alt="Target image 7" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/svg/000007.svg">
+            <img class="qual-view qual-view-image" src="static/qual/svg/000007.png" alt="Generated SVG output 7" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/svg/000007.gif" alt="Generation process 7" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/svg/000008_src.png" alt="Target image 8" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/svg/000008.svg">
+            <img class="qual-view qual-view-image" src="static/qual/svg/000008.png" alt="Generated SVG output 8" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/svg/000008.gif" alt="Generation process 8" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/svg/000009_src.png" alt="Target image 9" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/svg/000009.svg">
+            <img class="qual-view qual-view-image" src="static/qual/svg/000009.png" alt="Generated SVG output 9" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/svg/000009.gif" alt="Generation process 9" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/svg/000010_src.png" alt="Target image 10" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/svg/000010.svg">
+            <img class="qual-view qual-view-image" src="static/qual/svg/000010.png" alt="Generated SVG output 10" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/svg/000010.gif" alt="Generation process 10" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/svg/000011_src.png" alt="Target image 11" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/svg/000011.svg">
+            <img class="qual-view qual-view-image" src="static/qual/svg/000011.png" alt="Generated SVG output 11" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/svg/000011.gif" alt="Generation process 11" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/svg/000012_src.png" alt="Target image 12" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/svg/000012.svg">
+            <img class="qual-view qual-view-image" src="static/qual/svg/000012.png" alt="Generated SVG output 12" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/svg/000012.gif" alt="Generation process 12" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/svg/000013_src.png" alt="Target image 13" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/svg/000013.svg">
+            <img class="qual-view qual-view-image" src="static/qual/svg/000013.png" alt="Generated SVG output 13" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/svg/000013.gif" alt="Generation process 13" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/svg/000014_src.png" alt="Target image 14" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/svg/000014.svg">
+            <img class="qual-view qual-view-image" src="static/qual/svg/000014.png" alt="Generated SVG output 14" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/svg/000014.gif" alt="Generation process 14" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/svg/000015_src.png" alt="Target image 15" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/svg/000015.svg">
+            <img class="qual-view qual-view-image" src="static/qual/svg/000015.png" alt="Generated SVG output 15" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/svg/000015.gif" alt="Generation process 15" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/svg/000016_src.png" alt="Target image 16" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/svg/000016.svg">
+            <img class="qual-view qual-view-image" src="static/qual/svg/000016.png" alt="Generated SVG output 16" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/svg/000016.gif" alt="Generation process 16" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content mt-6">
+      <h3 class="title is-4 has-text-centered">Image-to-TikZ</h3>
+      <div class="qual-toggle-wrap">
+        <div class="qual-toggle" role="group" aria-label="Image-to-TikZ view mode">
+          <button type="button" class="qual-toggle-btn" data-caption="Rendered output" onclick="setQualMode('qual-grid-tikz', 'image', this)">Image</button>
+          <button type="button" class="qual-toggle-btn is-active" data-caption="Command-by-command drawing of the TikZ (every 2 commands)" onclick="setQualMode('qual-grid-tikz', 'gif', this)">GIF</button>
+          <button type="button" class="qual-toggle-btn" data-caption="Generated TikZ code" onclick="setQualMode('qual-grid-tikz', 'code', this)">Code</button>
+        </div>
+        <p class="qual-caption" id="qual-caption-tikz">Command-by-command drawing of the TikZ (every 2 commands)</p>
+      </div>
+      <div class="qual-grid" id="qual-grid-tikz" data-mode="gif">
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/tikz/000001_src.png" alt="Target image 1" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/tikz/000001.txt">
+            <img class="qual-view qual-view-image" src="static/qual/tikz/000001.png" alt="Generated TikZ output 1" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/tikz/000001.gif" alt="Generation process 1" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/tikz/000002_src.png" alt="Target image 2" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/tikz/000002.txt">
+            <img class="qual-view qual-view-image" src="static/qual/tikz/000002.png" alt="Generated TikZ output 2" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/tikz/000002.gif" alt="Generation process 2" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/tikz/000003_src.png" alt="Target image 3" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/tikz/000003.txt">
+            <img class="qual-view qual-view-image" src="static/qual/tikz/000003.png" alt="Generated TikZ output 3" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/tikz/000003.gif" alt="Generation process 3" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/tikz/000004_src.png" alt="Target image 4" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/tikz/000004.txt">
+            <img class="qual-view qual-view-image" src="static/qual/tikz/000004.png" alt="Generated TikZ output 4" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/tikz/000004.gif" alt="Generation process 4" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/tikz/000005_src.png" alt="Target image 5" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/tikz/000005.txt">
+            <img class="qual-view qual-view-image" src="static/qual/tikz/000005.png" alt="Generated TikZ output 5" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/tikz/000005.gif" alt="Generation process 5" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/tikz/000006_src.png" alt="Target image 6" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/tikz/000006.txt">
+            <img class="qual-view qual-view-image" src="static/qual/tikz/000006.png" alt="Generated TikZ output 6" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/tikz/000006.gif" alt="Generation process 6" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/tikz/000007_src.png" alt="Target image 7" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/tikz/000007.txt">
+            <img class="qual-view qual-view-image" src="static/qual/tikz/000007.png" alt="Generated TikZ output 7" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/tikz/000007.gif" alt="Generation process 7" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/tikz/000008_src.png" alt="Target image 8" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/tikz/000008.txt">
+            <img class="qual-view qual-view-image" src="static/qual/tikz/000008.png" alt="Generated TikZ output 8" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/tikz/000008.gif" alt="Generation process 8" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/tikz/000009_src.png" alt="Target image 9" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/tikz/000009.txt">
+            <img class="qual-view qual-view-image" src="static/qual/tikz/000009.png" alt="Generated TikZ output 9" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/tikz/000009.gif" alt="Generation process 9" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/tikz/000010_src.png" alt="Target image 10" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/tikz/000010.txt">
+            <img class="qual-view qual-view-image" src="static/qual/tikz/000010.png" alt="Generated TikZ output 10" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/tikz/000010.gif" alt="Generation process 10" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/tikz/000011_src.png" alt="Target image 11" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/tikz/000011.txt">
+            <img class="qual-view qual-view-image" src="static/qual/tikz/000011.png" alt="Generated TikZ output 11" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/tikz/000011.gif" alt="Generation process 11" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/tikz/000012_src.png" alt="Target image 12" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/tikz/000012.txt">
+            <img class="qual-view qual-view-image" src="static/qual/tikz/000012.png" alt="Generated TikZ output 12" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/tikz/000012.gif" alt="Generation process 12" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/tikz/000013_src.png" alt="Target image 13" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/tikz/000013.txt">
+            <img class="qual-view qual-view-image" src="static/qual/tikz/000013.png" alt="Generated TikZ output 13" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/tikz/000013.gif" alt="Generation process 13" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/tikz/000014_src.png" alt="Target image 14" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/tikz/000014.txt">
+            <img class="qual-view qual-view-image" src="static/qual/tikz/000014.png" alt="Generated TikZ output 14" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/tikz/000014.gif" alt="Generation process 14" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/tikz/000015_src.png" alt="Target image 15" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/tikz/000015.txt">
+            <img class="qual-view qual-view-image" src="static/qual/tikz/000015.png" alt="Generated TikZ output 15" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/tikz/000015.gif" alt="Generation process 15" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="qual-pair">
+          <div class="qual-thumb qual-input">
+            <img src="static/qual/tikz/000016_src.png" alt="Target image 16" loading="lazy">
+          </div>
+          <i class="fas fa-arrow-right qual-arrow"></i>
+          <div class="qual-thumb qual-output" data-code-src="static/qual/tikz/000016.txt">
+            <img class="qual-view qual-view-image" src="static/qual/tikz/000016.png" alt="Generated TikZ output 16" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/qual/tikz/000016.gif" alt="Generation process 16" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Qualitative Results -->
 
 
 <!--BibTex citation -->

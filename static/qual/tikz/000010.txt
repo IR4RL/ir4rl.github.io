@@ -1,0 +1,26 @@
+\documentclass{article}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+\draw[thick] (-2,-2) -- (2,-2);
+\draw[thick] (-2,-2) -- (-.5,1);
+\draw[thick] (2,-2) -- (.5,1);
+\draw[thick] (-.5,1) -- (.5,1);
+\draw[thick, dashed] (-2,2) -- (2,2);
+\draw[thick, dashed] (-2,2) -- (-.5,-1);
+\draw[thick, dashed] (2,2) -- (.5,-1);
+\draw[thick, dashed] (-.5,-1) -- (.5,-1);
+\draw[blue, thick] (-1.5,1.5) -- (1.5,1.5);
+\draw[blue, thick] (-1.5,-1.5) -- (1.5,-1.5);
+\draw[blue, thick] (-1.5,1.5) to[out=-135,in=135] (-1.5,-1.5);
+\draw[blue, thick] (1.5,1.5) to[out=-45,in=45] (1.5,-1.5);
+\draw[orange, thick] (-1.25,1.25) -- (1.25,1.25);
+\draw[orange, thick] (-1.25,-1.25) -- (1.25,-1.25);
+\draw[orange, thick] (-1.25,1.25) -- (-1.25,-1.25);
+\draw[orange, thick] (1.25,1.25) -- (1.25,-1.25);
+\node at (.25,0) {$\bullet$};
+\node at (.5,0) {$0$};
+\draw[dotted] (-2,-2) -- (2,2);
+\draw[dotted] (-2,2) -- (2,-2);
+\end{tikzpicture}
+\end{document}

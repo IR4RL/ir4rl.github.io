@@ -1,0 +1,32 @@
+\documentclass{article}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+\node (a) at (0,5) {Summation Methods};
+\node (b) at (-2,3) {Sequential};
+\node (c) at (3,3) {Functional};
+\node (d) at (-3,2) {Nirvana};
+\node (e) at (-1,2) {Euler};
+\node (f) at (1,2) {Abelian means};
+\node (g) at (4,2) {Lambert};
+\node (h) at (6,2) {Mittag-Liefer};
+\node (i) at (-3,1) {Ces\`{a}ro};
+\node (j) at (2,1) {Abel};
+\node (k) at (5,1) {weak Borel};
+\node (l) at (7,1) {strong Borel};
+\draw[->] (a) -- (b);
+\draw[->] (a) -- (c);
+\draw[->] (b) -- (d);
+\draw[->] (b) -- (e);
+\draw[->] (c) -- (f);
+\draw[->] (c) -- (g);
+\draw[->] (c) -- (h);
+\draw[->] (d) -- (i);
+\draw[->] (e) -- (j);
+\draw[->] (f) -- (j);
+\draw[->] (h) -- (k);
+\draw[->] (i) -- (j);
+\draw[->] (k) -- (l);
+\draw[->] (h) -- (l);
+\end{tikzpicture}
+\end{document}

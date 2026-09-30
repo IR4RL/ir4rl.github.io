@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+[auto,
+block/.style={
+	rectangle,
+	draw=black,
+	thick,
+	fill=blue!20,
+	text width=5em,
+	align=center,
+	rounded corners,
+	minimum height=4em
+}
+]
+\draw (0,6) node[block] (pdf) {PDF};
+\draw (0,4) node[block] (choral) {Chora};
+\draw (0,2) node[block] (verdict) {Vector Database};
+\draw (0,0) node[block] (query) {Query: Answer 1};
+\draw (4,0) node[block] (combine) {Combine Answers};
+\draw (4,-2) node[block] (flm) {Foundational LLM};
+\draw (4,-4) node[block] (answer) {Final Answer};
+\draw (4,3) node[block] (query2) {User Question};
+\draw (7,2) node[block] (data) {Data Processing};
+\draw (7,0) node[block] (flm2) {Fine-tuned LLM};
+\draw (7,-2) node[block] (query3) {Query: Answer 2};
+\draw[-latex] (pdf) -- (choral);
+\draw[-latex] (choral) -- (verdict);
+\draw[-latex] (verdict) -- (query);
+\draw[-latex] (query) -- (combine);
+\draw[-latex] (combine) -- (flm);
+\draw[-latex] (flm) -- (answer);
+\draw[-latex] (query2) -- (verdict);
+\draw[-latex] (query2) -- (flm2);
+\draw[-latex] (flm2) -- (query3);
+\draw[-latex] (pdf) -| (data);
+\draw[-latex] (data) -- (flm2);
+\draw[-latex] (combine) -- (query3);
+\end{tikzpicture}
+\end{document}

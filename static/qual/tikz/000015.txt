@@ -1,0 +1,15 @@
+\documentclass{article}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+\node (A) at (0,0) {$A$};
+\node (B) at (1,-1) {$B$};
+\node (C) at (-1,-1) {$(a-1,a)$};
+\node (D) at (0,-2) {$(a-2,b)$};
+\node (E) at (2,-2) {$(b,a)$};
+\draw[->] (A) -- (C) node[midway,above] {$l_A$};
+\draw[->,blue,very thick] (A) -- (B) node[midway,above] {$r_A$};
+\draw[->,blue,very thick] (B) -- (D) node[midway,above] {$l_B$};
+\draw[->] (B) -- (E) node[midway,above] {$r_B$};
+\end{tikzpicture}
+\end{document}

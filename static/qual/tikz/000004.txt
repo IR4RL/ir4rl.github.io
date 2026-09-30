@@ -1,0 +1,36 @@
+\documentclass{article}
+\usepackage{pgfplots}
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+    title={Comparison of ARC Scores of Most Ubi-Models},
+    xlabel={\# of Turkish Tokens},
+    ylabel={\textcolor{red}{English} \& \textcolor{blue}{Turkish} ABC Acc.},
+    xmin=0, xmax=250,
+    ymin=30, ymax=65,
+    xtick={0,50,100,150,200,250},
+    ytick={30,35,40,45,50,55,60},
+    legend pos=north east,
+    ymajorgrids=true,
+    grid style=dashed,
+]
+
+\addplot[
+    color=blue,
+    mark=o,
+    ]
+    coordinates {
+    (0,33)(50,34)(100,37)(150,36)(200,38)(250,39)
+    };
+    \addlegendentry{ARC-t in Acc.}
+\addplot[
+    color=red,
+    mark=square,
+    ]
+    coordinates {
+    (0,61)(50,53)(100,51)(150,50)(200,48)(250,45)
+    };
+    \addlegendentry{ARC-acc Acc.}
+\end{axis}
+\end{tikzpicture}
+\end{document}

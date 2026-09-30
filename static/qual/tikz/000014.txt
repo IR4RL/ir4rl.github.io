@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+\draw[thick] (0,0) node {$\bullet$} node[left] {$z_1$} -- (2,0) node {$\bullet$} node[right] {$z_2$};
+\draw[thick] (0,0) -- (0,-1) node {$\bullet$} node[left] {$v_1$};
+\draw[thick] (2,0) -- (2,-1) node {$\bullet$} node[right] {$v_2$};
+\node at (1,-1.5) {$(a)$};
+\draw[thick] (4,0) node {$\bullet$} node[above] {$z$} -- (3,-1) node {$\bullet$} node[right] {$v_1$};
+\draw[thick] (4,0) -- (5,-1) node {$\bullet$} node[right] {$v_2$};
+\node at (4,-1.5) {$(b)$};
+\draw[thick] (7,0) node {$\bullet$} node[above] {$w$} -- (6,-1) node {$\bullet$} node[right] {$v_1$};
+\draw[thick] (7,0) -- (8,-1) node {$\bullet$} node[right] {$v_2$};
+\node at (7,-1.5) {$(c)$};
+\draw[thick] (-1,-2) node {$\bullet$} node[left] {$z$} -- (-1,-3) node {$\bullet$} node[left] {$v_1$};
+\draw[thick] (-1,-2) -- (2,-2) node {$\bullet$} node[right] {$w$};
+\draw[thick] (2,-2) -- (2,-3) node {$\bullet$} node[right] {$v_2$};
+\node at (1,-3.5) {$(d)$};
+\draw[thick] (3,-2) node {$\bullet$} node[left] {$z_1$} -- (5,-2) node {$\bullet$} node[right] {$z_2$};
+\draw[thick] (3,-2) -- (3,-3) node {$\bullet$} node[right] {$v_1$};
+\draw[thick] (5,-2) -- (5,-3) node {$\bullet$} node[right] {$v_2$};
+\node at (4,-3.5) {$(a)$};
+\draw[thick] (7,-2) node {$\bullet$} node[left] {$w_1$} -- (7,-3) node {$\bullet$} node[left] {$v_1$};
+\draw[thick] (8,-2) node {$\bullet$} node[right] {$w_2$} -- (8,-3) node {$\bullet$} node[right] {$v_2$};
+\node at (7.5,-3.5) {$(f)$};
+\node at (2.5,-1.8) {$e_1$};
+\node at (2.5,-2.5) {$e_2$};
+\node at (0,-1.5) {$e_1$};
+\node at (2.5,-.5) {$e_2$};
+\node at (5.5,-1.5) {$e_2$};
+\node at (7.5,-1.5) {$e_2$};
+\node at (7,-2.5) {$e_1$};
+\end{tikzpicture}
+\end{document}

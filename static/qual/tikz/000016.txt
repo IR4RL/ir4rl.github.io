@@ -1,0 +1,12 @@
+\documentclass{article}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+\node[draw,circle] (c0) at (0,0) {$c_0$};
+\node[draw,circle] (c1) at (1.5,0) {$c_1$};
+\node[draw,circle] (c2) at (1.5,-1.5) {$c_2$};
+\draw[->] (c0) -- (c1) node[midway,above] {0.2};
+\draw[->] (c1) -- (c2) node[midway,right] {0.5};
+\draw[->] (c2) to[bend left] node[midway,below left] {$(c_1\mapsto 0.3)$} (c0);
+\end{tikzpicture}
+\end{document}

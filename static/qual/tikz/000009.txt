@@ -1,0 +1,29 @@
+\documentclass[12pt]{article}
+\usepackage{amssymb}
+\usepackage{amsmath, amsthm}
+\usepackage{color}
+\usepackage{tikz}
+\tikzset{every picture/.style={thick}}
+\tikzset{every node/.style={circle,draw,inner sep=2pt}}
+
+\begin{document}
+
+\begin{tikzpicture}{
+\begin{scope}
+\node[label={90:$y_1$}] (A) at (-4,0) {};
+\node[label={90:$y_2$}] (B) at (-2.5,0) {};
+\node[label={90:$y_3$}] (C) at (-1,0) {};
+\node[label={90:$y_4$}] (D) at (0.5,0) {};
+\node[label={90:$y_5$}] (E) at (2,0) {};
+\node[label={90:$w_1$}] (W1) at (3.5,1.5) {};
+\node[label={90:$w_2$}] (W2) at (3.5,0) {};
+\node[label={90:$w_3$}] (W3) at (3.5,-1.5) {};
+\node[label={90:$u$}] (U) at (5,0) {};
+\draw (A) -- (B) -- (C) -- (D) -- (E);
+\draw (E) -- (W1) -- (U);
+\draw (E) -- (W2) -- (U);
+\draw (E) -- (W3) -- (U);
+\end{scope}}
+\end{tikzpicture}
+
+\end{document}

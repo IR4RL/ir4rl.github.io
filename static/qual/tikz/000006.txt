@@ -1,0 +1,14 @@
+\documentclass{article}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}[>=stealth]
+\node[circle,draw] (s1) at (0,0) {$s_1$};
+\node[circle,draw] (s2) at (2,0) {$s_2$};
+\node[circle,draw] (s3) at (4,0) {$s_3$};
+\draw[->,thick] (s1) -- (s2) node[midway,above] {$p,1$};
+\draw[->,thick] (s2) to[bend left] node[midway,above] {$1,0$} (s3);
+\draw[->,thick] (s3) to[bend left] node[midway,above] {$p,0$} (s2);
+\draw[->,thick] (s3) to[bend left] node[midway,below] {$1-p,1$} (s1);
+\draw[->] (s1) edge[loop above] node[above] {$1-p,2$} (s1);
+\end{tikzpicture}
+\end{document}

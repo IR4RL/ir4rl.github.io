@@ -304,10 +304,10 @@
       <div class="qual-toggle-wrap">
         <div class="qual-toggle" role="group" aria-label="Image-to-SVG view mode">
           <button type="button" class="qual-toggle-btn" data-caption="Rendered output" onclick="setQualMode('qual-grid-svg', 'image', this)">Image</button>
-          <button type="button" class="qual-toggle-btn is-active" data-caption="Path-by-path drawing of the SVG" onclick="setQualMode('qual-grid-svg', 'gif', this)">GIF</button>
+          <button type="button" class="qual-toggle-btn is-active" data-caption="Path-by-path rendering of the generated SVG" onclick="setQualMode('qual-grid-svg', 'gif', this)">GIF</button>
           <button type="button" class="qual-toggle-btn" data-caption="Generated SVG code" onclick="setQualMode('qual-grid-svg', 'code', this)">Code</button>
         </div>
-        <p class="qual-caption" id="qual-caption-svg">Path-by-path drawing of the SVG</p>
+        <p class="qual-caption" id="qual-caption-svg">Path-by-path rendering of the generated SVG</p>
       </div>
       <div class="qual-grid" id="qual-grid-svg" data-mode="gif">
         <div class="qual-pair">
@@ -542,10 +542,10 @@
       <div class="qual-toggle-wrap">
         <div class="qual-toggle" role="group" aria-label="Image-to-TikZ view mode">
           <button type="button" class="qual-toggle-btn" data-caption="Rendered output" onclick="setQualMode('qual-grid-tikz', 'image', this)">Image</button>
-          <button type="button" class="qual-toggle-btn is-active" data-caption="Command-by-command drawing of the TikZ (every 2 commands)" onclick="setQualMode('qual-grid-tikz', 'gif', this)">GIF</button>
+          <button type="button" class="qual-toggle-btn is-active" data-caption="Command-by-command rendering of the generated TikZ (every 2 commands)" onclick="setQualMode('qual-grid-tikz', 'gif', this)">GIF</button>
           <button type="button" class="qual-toggle-btn" data-caption="Generated TikZ code" onclick="setQualMode('qual-grid-tikz', 'code', this)">Code</button>
         </div>
-        <p class="qual-caption" id="qual-caption-tikz">Command-by-command drawing of the TikZ (every 2 commands)</p>
+        <p class="qual-caption" id="qual-caption-tikz">Command-by-command rendering of the generated TikZ (every 2 commands)</p>
       </div>
       <div class="qual-grid" id="qual-grid-tikz" data-mode="gif">
         <div class="qual-pair">

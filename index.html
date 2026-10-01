@@ -280,14 +280,14 @@
       <h3 class="title is-4 has-text-centered">Image-to-SVG</h3>
       <div class="qual-toggle-wrap">
         <div class="qual-toggle" role="group" aria-label="Image-to-SVG view mode">
-          <button type="button" class="qual-toggle-btn is-active" data-caption="Rendered output" onclick="setQualMode('cmp-grid-svg', 'image', this)">Image</button>
-          <button type="button" class="qual-toggle-btn" data-caption="Path-by-path rendering of the generated SVG" onclick="setQualMode('cmp-grid-svg', 'gif', this)">GIF</button>
+          <button type="button" class="qual-toggle-btn" data-caption="Rendered output" onclick="setQualMode('cmp-grid-svg', 'image', this)">Image</button>
+          <button type="button" class="qual-toggle-btn is-active" data-caption="Path-by-path rendering of the generated SVG" onclick="setQualMode('cmp-grid-svg', 'gif', this)">GIF</button>
           <button type="button" class="qual-toggle-btn" data-caption="Generated SVG code" onclick="setQualMode('cmp-grid-svg', 'code', this)">Code</button>
         </div>
-        <p class="qual-caption" id="cmp-caption-svg">Rendered output</p>
+        <p class="qual-caption" id="cmp-caption-svg">Path-by-path rendering of the generated SVG</p>
       </div>
       <div class="cmp-grid-wrap">
-        <div class="cmp-grid" id="cmp-grid-svg" data-mode="image" style="grid-template-columns: repeat(8, minmax(70px, 1fr));">
+        <div class="cmp-grid" id="cmp-grid-svg" data-mode="gif" style="grid-template-columns: repeat(8, minmax(70px, 1fr));">
           <div class="cmp-col-label is-bold"><strong>Input</strong></div>
           <div class="cmp-col-label"><span>LIVE</span></div>
           <div class="cmp-col-label"><span>Gemini 3</span></div>
@@ -540,14 +540,14 @@
       <h3 class="title is-4 has-text-centered">Image-to-TikZ</h3>
       <div class="qual-toggle-wrap">
         <div class="qual-toggle" role="group" aria-label="Image-to-TikZ view mode">
-          <button type="button" class="qual-toggle-btn is-active" data-caption="Rendered output" onclick="setQualMode('cmp-grid-tikz', 'image', this)">Image</button>
-          <button type="button" class="qual-toggle-btn" data-caption="Command-by-command rendering of the generated TikZ (every 2 commands)" onclick="setQualMode('cmp-grid-tikz', 'gif', this)">GIF</button>
+          <button type="button" class="qual-toggle-btn" data-caption="Rendered output" onclick="setQualMode('cmp-grid-tikz', 'image', this)">Image</button>
+          <button type="button" class="qual-toggle-btn is-active" data-caption="Command-by-command rendering of the generated TikZ (every 2 commands)" onclick="setQualMode('cmp-grid-tikz', 'gif', this)">GIF</button>
           <button type="button" class="qual-toggle-btn" data-caption="Generated TikZ code" onclick="setQualMode('cmp-grid-tikz', 'code', this)">Code</button>
         </div>
-        <p class="qual-caption" id="cmp-caption-tikz">Rendered output</p>
+        <p class="qual-caption" id="cmp-caption-tikz">Command-by-command rendering of the generated TikZ (every 2 commands)</p>
       </div>
       <div class="cmp-grid-wrap">
-        <div class="cmp-grid" id="cmp-grid-tikz" data-mode="image" style="grid-template-columns: repeat(8, minmax(70px, 1fr));">
+        <div class="cmp-grid" id="cmp-grid-tikz" data-mode="gif" style="grid-template-columns: repeat(8, minmax(70px, 1fr));">
           <div class="cmp-col-label is-bold"><strong>Input</strong></div>
           <div class="cmp-col-label"><span>Gemini 3</span></div>
           <div class="cmp-col-label"><span>VinciCoder-8B</span></div>

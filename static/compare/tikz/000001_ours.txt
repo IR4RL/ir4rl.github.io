@@ -1,0 +1,27 @@
+\documentclass{article}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+\draw[fill=black!30!green] (0,0) circle (2pt) node[above] {$V_0$};
+\draw[fill=black!30!green] (1,0) circle (2pt) node[above] {$V_1$};
+\draw[fill=black!30!green] (2,0) circle (2pt) node[above] {$V_2$};
+\node at (2.5,0) {$\cdots$};
+\draw[fill=black!30!green] (3,0) circle (2pt) node[above] {$V_{n-1}$};
+\draw[fill=black!30!green] (4,0) circle (2pt) node[above] {$V_n$};
+\node[left] at (-0.5,0) {$0$};
+\node[right] at (4.5,0) {$0$};
+\draw[->,orange] (0,-0.2) to[out=-90,in=-90] node[below] {$f$} (-1,0);
+\draw[->,orange] (1,-0.2) to[out=-90,in=-90] node[below] {$f$} (0,-0.2);
+\draw[->,orange] (2,-0.2) to[out=-90,in=-90] node[below] {$f$} (1,-0.2);
+\draw[->,orange] (4,-0.2) to[out=-90,in=-90] node[below] {$f$} (3,-0.2);
+\draw[->,blue!50] (0,0.2) to[out=90,in=90] node[above] {$e$} (1,0.2);
+\draw[->,blue!50] (1,0.2) to[out=90,in=90] node[above] {$e$} (2,0.2);
+\draw[->,blue!50] (3,0.2) to[out=90,in=90] node[above] {$e$} (4,0.2);
+\draw[->,blue!50] (5,0.2) to[out=90,in=90] node[above] {$e$} (4,0.2);
+\draw[->,green!50!gray] (0,0.2) to[out=120,in=180] node[above] {$h$} (0,2) to[out=0,in=60] (0,0.2);
+\draw[->,green!50!gray] (1,0.2) to[out=120,in=180] node[above] {$h$} (1,2) to[out=0,in=60] (1,0.2);
+\draw[->,green!50!gray] (2,0.2) to[out=120,in=180] node[above] {$h$} (2,2) to[out=0,in=60] (2,0.2);
+\draw[->,green!50!gray] (3,0.2) to[out=120,in=180] node[above] {$h$} (3,2) to[out=0,in=60] (3,0.2);
+\draw[->,green!50!gray] (4,0.2) to[out=120,in=180] node[above] {$h$} (4,2) to[out=0,in=60] (4,0.2);
+\end{tikzpicture}
+\end{document}

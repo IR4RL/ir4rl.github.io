@@ -1,0 +1,34 @@
+\documentclass{article}
+\usepackage{amsmath,amsfonts,amssymb,enumerate,amsthm}
+\usepackage{tikz, pgfplots}
+
+\begin{document}
+
+\begin{tikzpicture}
+	\node at (1,0) {$\mathbf{b}$};
+	\draw [->, very thick] (1.2,0) -- (2,0);
+	\draw [fill=blue!30] (2.2,-0.5) rectangle (3.7,0.5);
+	\node at (2.95,0) {$\mathcal{O}(T_b)$};
+	\draw [->, very thick] (3.7,0) -- (4.5,0);
+	\draw [fill=blue!30] (4.5,-0.5) rectangle (6,0.5);
+	\node at (5.25,0) {$\mathcal{O}(T_s)$};
+	\draw [->, very thick] (6,0) -- (6.5,0);
+	\node at (6.8,0) {$\mathbf{\hat{x}}$};
+	\draw [->, very thick] (2.95,1.9) -- (2.95,0.5);
+	\node at (2.95,2.2) {$\|\Psi_0\}$};
+	\draw [->, very thick] (5.25,1.9) -- (5.25,0.5);
+	\node at (5.25,2.2) {$A$};
+	\node at (5.25,1) {Quantum Simulation};
+	\node at (8,1) {Read Out};
+	\draw [->, very thick] (6.8,0) -- (7.5,0);
+	\draw [fill=blue!30] (7.5,-0.5) rectangle (9,0.5);
+	\node at (8.25,0) {$\mathcal{O}(T_r)$};
+	\draw [->, very thick] (9,0) -- (9.5,0);
+	\node at (9.8,0) {$\mathbf{\hat{x}}$};
+	\draw [dashed, very thick, fill=yellow!30] (1.6,-2.2) rectangle (9.4,1.7);
+	\node at (5.25,-1.2) {\textcolor{blue}{HIL: $\mathcal{O}(\kappa(T_b+T_s))$}};
+	\node at (5.25,-2) {\textcolor{red}{End-to-End: $\mathcal{O}(T_r(\kappa(T_b+T_s)))$}};
+	\node at (1.6,2.2) {Initial State:};
+\end{tikzpicture}
+
+\end{document}

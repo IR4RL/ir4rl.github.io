@@ -1,0 +1,35 @@
+\documentclass[tikz, border=1pt]{standalone}
+\usetikzlibrary{positioning}
+\begin{document}
+
+\begin{tikzpicture}
+
+\node (u0) at (0,0) {$0$};
+\node[right=0.5cm of u0] (v0) [circle, fill=black!50!green, label=above:{$V_0$}] {};
+\node[right=0.5cm of v0] (v1) [circle, fill=black!50!green, label=above:{$V_1$}] {};
+\node[right=0.5cm of v1] (v2) [circle, fill=black!50!green, label=above:{$V_2$}] {};
+\node[right=0.25cm of v2] (v3) {$\cdots$};
+\node[right=0.25cm of v3] (v4) [circle, fill=black!50!green, label=above:{$V_{n-1}$}] {};
+\node[right=0.5cm of v4] (v5) [circle, fill=black!50!green, label=above:{$V_n$}] {};
+\node[right=0.5cm of v5] (u5) {$0$};
+
+\draw[->, bend right=80, orange] (v0) to node [below] {$f$} (u0);
+\draw[->, bend right=80, orange] (v1) to node [below] {$f$} (v0);
+\draw[->, bend right=80, orange] (v2) to node [below] {$f$} (v1);
+\draw[->, bend right=80, orange] (v4) to node [below] {$f$} (v2);
+\draw[->, bend right=80, orange] (v5) to node [below] {$f$} (v4);
+
+\draw[->, teal] (v0) to [out=120, in=60, looseness=15] node [above] {$h$} (v0);
+\draw[->, teal] (v1) to [out=120, in=60, looseness=15] node [above] {$h$} (v1);
+\draw[->, teal] (v2) to [out=120, in=60, looseness=15] node [above] {$h$} (v2);
+\draw[->, teal] (v4) to [out=120, in=60, looseness=15] node [above] {$h$} (v4);
+\draw[->, teal] (v5) to [out=120, in=60, looseness=15] node [above] {$h$} (v5);
+
+\draw[->, blue!50!green, bend left=65] (v0) to node [above] {$e$} (v1);
+\draw[->, blue!50!green, bend left=65] (v1) to node [above] {$e$} (v2);
+\draw[->, blue!50!green, bend left=65] (v4) to node [above] {$e$} (v5);
+\draw[->, blue!50!green, bend left=65] (v5) to node [above] {$e$} (u5);
+
+\end{tikzpicture}
+
+\end{document}

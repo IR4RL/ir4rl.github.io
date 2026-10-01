@@ -271,27 +271,476 @@
 <!-- End Interactive Demo -->
 
 
-<!-- Comparison -->
-<section class="section">
+<!-- Comparisons -->
+<section class="section" id="comparisons-html">
   <div class="container is-max-widescreen">
-    <h2 class="title is-3 has-text-centered">Comparison</h2>
+    <h2 class="title is-3 has-text-centered">Comparisons</h2>
 
     <div class="content">
       <h3 class="title is-4 has-text-centered">Image-to-SVG</h3>
-      <figure class="image">
-        <img src="static/images/qual_svg.png" alt="Image-to-SVG qualitative comparison">
-      </figure>
+      <div class="qual-toggle-wrap">
+        <div class="qual-toggle" role="group" aria-label="Image-to-SVG view mode">
+          <button type="button" class="qual-toggle-btn is-active" data-caption="Rendered output" onclick="setQualMode('cmp-grid-svg', 'image', this)">Image</button>
+          <button type="button" class="qual-toggle-btn" data-caption="Path-by-path rendering of the generated SVG" onclick="setQualMode('cmp-grid-svg', 'gif', this)">GIF</button>
+          <button type="button" class="qual-toggle-btn" data-caption="Generated SVG code" onclick="setQualMode('cmp-grid-svg', 'code', this)">Code</button>
+        </div>
+        <p class="qual-caption" id="cmp-caption-svg">Rendered output</p>
+      </div>
+      <div class="cmp-grid-wrap">
+        <div class="cmp-grid" id="cmp-grid-svg" data-mode="image" style="grid-template-columns: repeat(8, minmax(70px, 1fr));">
+          <div class="cmp-col-label is-bold"><strong>Input</strong></div>
+          <div class="cmp-col-label"><span>LIVE</span></div>
+          <div class="cmp-col-label"><span>Gemini 3</span></div>
+          <div class="cmp-col-label"><span>InternSVG</span></div>
+          <div class="cmp-col-label"><span>OmniSVG-4B</span></div>
+          <div class="cmp-col-label"><span>OmniSVG<br>+RAFT</span></div>
+          <div class="cmp-col-label"><span>OmniSVG<br>+Outcome</span></div>
+          <div class="cmp-col-label is-bold"><strong>Ours</strong></div>
+          <div class="cmp-thumb qual-thumb qual-input">
+            <img src="static/compare/svg/000001_src.png" alt="Target image 1" loading="lazy">
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/svg/000001_live.svg">
+            <img class="qual-view qual-view-image" src="static/compare/svg/000001_live.png" alt="LIVE output 1" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/svg/000001_live.gif" alt="LIVE generation process 1" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/svg/000001_gemini.svg">
+            <img class="qual-view qual-view-image" src="static/compare/svg/000001_gemini.png" alt="Gemini 3 output 1" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/svg/000001_gemini.gif" alt="Gemini 3 generation process 1" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/svg/000001_intersvg.svg">
+            <img class="qual-view qual-view-image" src="static/compare/svg/000001_intersvg.png" alt="InternSVG output 1" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/svg/000001_intersvg.gif" alt="InternSVG generation process 1" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/svg/000001_omnisvg4b.svg">
+            <img class="qual-view qual-view-image" src="static/compare/svg/000001_omnisvg4b.png" alt="OmniSVG-4B output 1" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/svg/000001_omnisvg4b.gif" alt="OmniSVG-4B generation process 1" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/svg/000001_raft.svg">
+            <img class="qual-view qual-view-image" src="static/compare/svg/000001_raft.png" alt="OmniSVG+RAFT output 1" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/svg/000001_raft.gif" alt="OmniSVG+RAFT generation process 1" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/svg/000001_outcome.svg">
+            <img class="qual-view qual-view-image" src="static/compare/svg/000001_outcome.png" alt="OmniSVG+Outcome output 1" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/svg/000001_outcome.gif" alt="OmniSVG+Outcome generation process 1" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/svg/000001_ours.svg">
+            <img class="qual-view qual-view-image" src="static/compare/svg/000001_ours.png" alt="Ours output 1" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/svg/000001_ours.gif" alt="Ours generation process 1" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-input">
+            <img src="static/compare/svg/000002_src.png" alt="Target image 2" loading="lazy">
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/svg/000002_live.svg">
+            <img class="qual-view qual-view-image" src="static/compare/svg/000002_live.png" alt="LIVE output 2" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/svg/000002_live.gif" alt="LIVE generation process 2" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/svg/000002_gemini.svg">
+            <img class="qual-view qual-view-image" src="static/compare/svg/000002_gemini.png" alt="Gemini 3 output 2" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/svg/000002_gemini.gif" alt="Gemini 3 generation process 2" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/svg/000002_intersvg.svg">
+            <img class="qual-view qual-view-image" src="static/compare/svg/000002_intersvg.png" alt="InternSVG output 2" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/svg/000002_intersvg.gif" alt="InternSVG generation process 2" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/svg/000002_omnisvg4b.svg">
+            <img class="qual-view qual-view-image" src="static/compare/svg/000002_omnisvg4b.png" alt="OmniSVG-4B output 2" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/svg/000002_omnisvg4b.gif" alt="OmniSVG-4B generation process 2" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/svg/000002_raft.svg">
+            <img class="qual-view qual-view-image" src="static/compare/svg/000002_raft.png" alt="OmniSVG+RAFT output 2" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/svg/000002_raft.gif" alt="OmniSVG+RAFT generation process 2" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/svg/000002_outcome.svg">
+            <img class="qual-view qual-view-image" src="static/compare/svg/000002_outcome.png" alt="OmniSVG+Outcome output 2" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/svg/000002_outcome.gif" alt="OmniSVG+Outcome generation process 2" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/svg/000002_ours.svg">
+            <img class="qual-view qual-view-image" src="static/compare/svg/000002_ours.png" alt="Ours output 2" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/svg/000002_ours.gif" alt="Ours generation process 2" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-input">
+            <img src="static/compare/svg/000003_src.png" alt="Target image 3" loading="lazy">
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/svg/000003_live.svg">
+            <img class="qual-view qual-view-image" src="static/compare/svg/000003_live.png" alt="LIVE output 3" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/svg/000003_live.gif" alt="LIVE generation process 3" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/svg/000003_gemini.svg">
+            <img class="qual-view qual-view-image" src="static/compare/svg/000003_gemini.png" alt="Gemini 3 output 3" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/svg/000003_gemini.gif" alt="Gemini 3 generation process 3" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/svg/000003_intersvg.svg">
+            <img class="qual-view qual-view-image" src="static/compare/svg/000003_intersvg.png" alt="InternSVG output 3" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/svg/000003_intersvg.gif" alt="InternSVG generation process 3" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/svg/000003_omnisvg4b.svg">
+            <img class="qual-view qual-view-image" src="static/compare/svg/000003_omnisvg4b.png" alt="OmniSVG-4B output 3" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/svg/000003_omnisvg4b.gif" alt="OmniSVG-4B generation process 3" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/svg/000003_raft.svg">
+            <img class="qual-view qual-view-image" src="static/compare/svg/000003_raft.png" alt="OmniSVG+RAFT output 3" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/svg/000003_raft.gif" alt="OmniSVG+RAFT generation process 3" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/svg/000003_outcome.svg">
+            <img class="qual-view qual-view-image" src="static/compare/svg/000003_outcome.png" alt="OmniSVG+Outcome output 3" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/svg/000003_outcome.gif" alt="OmniSVG+Outcome generation process 3" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/svg/000003_ours.svg">
+            <img class="qual-view qual-view-image" src="static/compare/svg/000003_ours.png" alt="Ours output 3" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/svg/000003_ours.gif" alt="Ours generation process 3" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-input">
+            <img src="static/compare/svg/000004_src.png" alt="Target image 4" loading="lazy">
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/svg/000004_live.svg">
+            <img class="qual-view qual-view-image" src="static/compare/svg/000004_live.png" alt="LIVE output 4" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/svg/000004_live.gif" alt="LIVE generation process 4" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/svg/000004_gemini.svg">
+            <img class="qual-view qual-view-image" src="static/compare/svg/000004_gemini.png" alt="Gemini 3 output 4" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/svg/000004_gemini.gif" alt="Gemini 3 generation process 4" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/svg/000004_intersvg.svg">
+            <img class="qual-view qual-view-image" src="static/compare/svg/000004_intersvg.png" alt="InternSVG output 4" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/svg/000004_intersvg.gif" alt="InternSVG generation process 4" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/svg/000004_omnisvg4b.svg">
+            <img class="qual-view qual-view-image" src="static/compare/svg/000004_omnisvg4b.png" alt="OmniSVG-4B output 4" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/svg/000004_omnisvg4b.gif" alt="OmniSVG-4B generation process 4" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/svg/000004_raft.svg">
+            <img class="qual-view qual-view-image" src="static/compare/svg/000004_raft.png" alt="OmniSVG+RAFT output 4" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/svg/000004_raft.gif" alt="OmniSVG+RAFT generation process 4" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/svg/000004_outcome.svg">
+            <img class="qual-view qual-view-image" src="static/compare/svg/000004_outcome.png" alt="OmniSVG+Outcome output 4" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/svg/000004_outcome.gif" alt="OmniSVG+Outcome generation process 4" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/svg/000004_ours.svg">
+            <img class="qual-view qual-view-image" src="static/compare/svg/000004_ours.png" alt="Ours output 4" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/svg/000004_ours.gif" alt="Ours generation process 4" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="content mt-6">
       <h3 class="title is-4 has-text-centered">Image-to-TikZ</h3>
-      <figure class="image">
-        <img src="static/images/qual_tikz.png" alt="Image-to-TikZ qualitative comparison">
-      </figure>
+      <div class="qual-toggle-wrap">
+        <div class="qual-toggle" role="group" aria-label="Image-to-TikZ view mode">
+          <button type="button" class="qual-toggle-btn is-active" data-caption="Rendered output" onclick="setQualMode('cmp-grid-tikz', 'image', this)">Image</button>
+          <button type="button" class="qual-toggle-btn" data-caption="Command-by-command rendering of the generated TikZ (every 2 commands)" onclick="setQualMode('cmp-grid-tikz', 'gif', this)">GIF</button>
+          <button type="button" class="qual-toggle-btn" data-caption="Generated TikZ code" onclick="setQualMode('cmp-grid-tikz', 'code', this)">Code</button>
+        </div>
+        <p class="qual-caption" id="cmp-caption-tikz">Rendered output</p>
+      </div>
+      <div class="cmp-grid-wrap">
+        <div class="cmp-grid" id="cmp-grid-tikz" data-mode="image" style="grid-template-columns: repeat(8, minmax(70px, 1fr));">
+          <div class="cmp-col-label is-bold"><strong>Input</strong></div>
+          <div class="cmp-col-label"><span>Gemini 3</span></div>
+          <div class="cmp-col-label"><span>VinciCoder-8B</span></div>
+          <div class="cmp-col-label"><span>DeTikZify-v2.5</span></div>
+          <div class="cmp-col-label"><span>DeTikZify-v2</span></div>
+          <div class="cmp-col-label"><span>DeTikZify-v2<br>+RAFT</span></div>
+          <div class="cmp-col-label"><span>DeTikZify-v2<br>+Outcome</span></div>
+          <div class="cmp-col-label is-bold"><strong>Ours</strong></div>
+          <div class="cmp-thumb qual-thumb qual-input">
+            <img src="static/compare/tikz/000001_src.png" alt="Target image 1" loading="lazy">
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/tikz/000001_gemini.txt">
+            <img class="qual-view qual-view-image" src="static/compare/tikz/000001_gemini.png" alt="Gemini 3 output 1" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/tikz/000001_gemini.gif" alt="Gemini 3 generation process 1" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/tikz/000001_vincicoder.txt">
+            <img class="qual-view qual-view-image" src="static/compare/tikz/000001_vincicoder.png" alt="VinciCoder-8B output 1" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/tikz/000001_vincicoder.gif" alt="VinciCoder-8B generation process 1" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/tikz/000001_detikzifyv2.5.txt">
+            <img class="qual-view qual-view-image" src="static/compare/tikz/000001_detikzifyv2.5.png" alt="DeTikZify-v2.5 output 1" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/tikz/000001_detikzifyv2.5.gif" alt="DeTikZify-v2.5 generation process 1" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/tikz/000001_detikzifyv2.txt">
+            <img class="qual-view qual-view-image" src="static/compare/tikz/000001_detikzifyv2.png" alt="DeTikZify-v2 output 1" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/tikz/000001_detikzifyv2.gif" alt="DeTikZify-v2 generation process 1" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/tikz/000001_raft.txt">
+            <img class="qual-view qual-view-image" src="static/compare/tikz/000001_raft.png" alt="DeTikZify-v2 +RAFT output 1" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/tikz/000001_raft.gif" alt="DeTikZify-v2 +RAFT generation process 1" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/tikz/000001_outcome.txt">
+            <img class="qual-view qual-view-image" src="static/compare/tikz/000001_outcome.png" alt="DeTikZify-v2 +Outcome output 1" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/tikz/000001_outcome.gif" alt="DeTikZify-v2 +Outcome generation process 1" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/tikz/000001_ours.txt">
+            <img class="qual-view qual-view-image" src="static/compare/tikz/000001_ours.png" alt="Ours output 1" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/tikz/000001_ours.gif" alt="Ours generation process 1" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-input">
+            <img src="static/compare/tikz/000002_src.png" alt="Target image 2" loading="lazy">
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/tikz/000002_gemini.txt">
+            <img class="qual-view qual-view-image" src="static/compare/tikz/000002_gemini.png" alt="Gemini 3 output 2" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/tikz/000002_gemini.gif" alt="Gemini 3 generation process 2" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/tikz/000002_vincicoder.txt">
+            <img class="qual-view qual-view-image" src="static/compare/tikz/000002_vincicoder.png" alt="VinciCoder-8B output 2" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/tikz/000002_vincicoder.gif" alt="VinciCoder-8B generation process 2" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/tikz/000002_detikzifyv2.5.txt">
+            <img class="qual-view qual-view-image" src="static/compare/tikz/000002_detikzifyv2.5.png" alt="DeTikZify-v2.5 output 2" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/tikz/000002_detikzifyv2.5.gif" alt="DeTikZify-v2.5 generation process 2" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/tikz/000002_detikzifyv2.txt">
+            <img class="qual-view qual-view-image" src="static/compare/tikz/000002_detikzifyv2.png" alt="DeTikZify-v2 output 2" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/tikz/000002_detikzifyv2.gif" alt="DeTikZify-v2 generation process 2" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/tikz/000002_raft.txt">
+            <img class="qual-view qual-view-image" src="static/compare/tikz/000002_raft.png" alt="DeTikZify-v2 +RAFT output 2" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/tikz/000002_raft.gif" alt="DeTikZify-v2 +RAFT generation process 2" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/tikz/000002_outcome.txt">
+            <img class="qual-view qual-view-image" src="static/compare/tikz/000002_outcome.png" alt="DeTikZify-v2 +Outcome output 2" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/tikz/000002_outcome.gif" alt="DeTikZify-v2 +Outcome generation process 2" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/tikz/000002_ours.txt">
+            <img class="qual-view qual-view-image" src="static/compare/tikz/000002_ours.png" alt="Ours output 2" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/tikz/000002_ours.gif" alt="Ours generation process 2" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-input">
+            <img src="static/compare/tikz/000003_src.png" alt="Target image 3" loading="lazy">
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/tikz/000003_gemini.txt">
+            <img class="qual-view qual-view-image" src="static/compare/tikz/000003_gemini.png" alt="Gemini 3 output 3" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/tikz/000003_gemini.gif" alt="Gemini 3 generation process 3" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/tikz/000003_vincicoder.txt">
+            <img class="qual-view qual-view-image" src="static/compare/tikz/000003_vincicoder.png" alt="VinciCoder-8B output 3" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/tikz/000003_vincicoder.gif" alt="VinciCoder-8B generation process 3" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/tikz/000003_detikzifyv2.5.txt">
+            <img class="qual-view qual-view-image" src="static/compare/tikz/000003_detikzifyv2.5.png" alt="DeTikZify-v2.5 output 3" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/tikz/000003_detikzifyv2.5.gif" alt="DeTikZify-v2.5 generation process 3" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/tikz/000003_detikzifyv2.txt">
+            <img class="qual-view qual-view-image" src="static/compare/tikz/000003_detikzifyv2.png" alt="DeTikZify-v2 output 3" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/tikz/000003_detikzifyv2.gif" alt="DeTikZify-v2 generation process 3" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/tikz/000003_raft.txt">
+            <img class="qual-view qual-view-image" src="static/compare/tikz/000003_raft.png" alt="DeTikZify-v2 +RAFT output 3" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/tikz/000003_raft.gif" alt="DeTikZify-v2 +RAFT generation process 3" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/tikz/000003_outcome.txt">
+            <img class="qual-view qual-view-image" src="static/compare/tikz/000003_outcome.png" alt="DeTikZify-v2 +Outcome output 3" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/tikz/000003_outcome.gif" alt="DeTikZify-v2 +Outcome generation process 3" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+          <div class="cmp-thumb qual-thumb qual-output" data-code-src="static/compare/tikz/000003_ours.txt">
+            <img class="qual-view qual-view-image" src="static/compare/tikz/000003_ours.png" alt="Ours output 3" loading="lazy">
+            <img class="qual-view qual-view-gif" src="static/compare/tikz/000003_ours.gif" alt="Ours generation process 3" loading="lazy">
+            <button class="copy-btn qual-copy-btn qual-view qual-view-code-btn" onclick="copyQualCode(this)" title="Copy code">Copy</button>
+            <div class="qual-view qual-view-code qual-code-overlay">
+              <pre class="qual-code"><code>Loading&hellip;</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
-<!-- End Comparison -->
+<!-- End Comparisons -->
+
+
 
 
 <!-- Qualitative Results -->

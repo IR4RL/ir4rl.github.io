@@ -1,0 +1,90 @@
+\documentclass{article}
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, fit, backgrounds}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\begin{document}
+
+\begin{tikzpicture}[
+    node distance=1.2cm and 1.5cm,
+    block/.style={
+        draw, 
+        fill=blue!30, 
+        minimum width=1.4cm, 
+        minimum height=1.2cm, 
+        align=center,
+        font=\large
+    },
+    arrow/.style={
+        ->, 
+        >=Stealth, 
+        thick
+    },
+    label_font/.style={font=\small}
+]
+
+    % --- Nodes ---
+    % Blue blocks
+    \node[block] (Tb) {$\mathcal{O}(T_b)$};
+    \node[block, right=of Tb] (Ts) {$\mathcal{O}(T_s)$};
+    \node[right=0.4cm of Ts, font=\large] (xtilde) {$|\tilde{\mathbf{x}}\rangle$};
+    \node[block, right=0.8cm of xtilde] (Tr) {$\mathcal{O}(T_r)$};
+    
+    % --- Background Boxes ---
+    \begin{scope}[on background layer]
+        % Green box (Quantum Simulation)
+        \node[
+            draw, 
+            fill=green!40, 
+            inner sep=10pt, 
+            fit=(Tb) (Ts) (xtilde), 
+            yshift=0.2cm,
+            label={[label_font, anchor=north]north:Quantum Simulation}
+        ] (simbox) {};
+        
+        % Yellow box (Outer)
+        \node[
+            draw, 
+            dashed, 
+            thick,
+            fill=yellow!25, 
+            inner sep=15pt, 
+            fit=(simbox) (Tr),
+            yshift=-0.3cm
+        ] (outerbox) {};
+    \end{scope}
+
+    % --- Labels inside boxes ---
+    % HHL complexity (Blue text)
+    \node[blue, font=\small, anchor=south] at ([yshift=0.2cm]simbox.south) {HHL : $\mathcal{O}(\kappa(T_b + T_s))$};
+    
+    % End-to-End complexity (Red text)
+    \node[red, font=\large, anchor=south] at ([yshift=0.2cm]outerbox.south) {End-to-End : $\mathcal{O}\left(T_r(\kappa(T_b + T_s))\right)$};
+
+    % Read Out label
+    \node[label_font, above=0.1cm of Tr] {Read Out};
+
+    % --- Inputs and Outputs ---
+    % Input b
+    \draw[arrow] ([xshift=-1cm]outerbox.west |- Tb.west) node[left, font=\large] {$\mathbf{b}$} -- (Tb.west);
+    
+    % Initial State input
+    \node[above=1.5cm of Tb, align=center, label_font] (init) {Initial State: \ $|\Psi_o\rangle$};
+    \draw[arrow] (init.south -| Tb.north) -- (Tb.north);
+    
+    % Matrix A input
+    \node[above=1.5cm of Ts, label_font] (matA) {$A$};
+    \draw[arrow] (matA.south) -- (Ts.north);
+    
+    % Internal arrows
+    \draw[arrow] (Tb) -- (Ts);
+    \draw[arrow] (Ts) -- (xtilde);
+    \draw[arrow] (xtilde) -- (Tr);
+    
+    % Output x_hat
+    \draw[arrow] (Tr.east) -- ++(0.7,0) node[right, font=\large] {$\widehat{\mathbf{x}}$};
+
+\end{tikzpicture}
+
+\end{document}

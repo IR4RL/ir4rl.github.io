@@ -1,0 +1,38 @@
+\documentclass[tikz, border=1pt]{standalone}
+
+\begin{document}
+
+\begin{tikzpicture}
+  \clip (-0.5, -1.0) rectangle (5.5, 2.5);
+
+  \foreach \x in {0, 1, 2, 4} {
+    \draw[fill=black!30!green] (\x, 0) circle (0.07) node[above] (N\x) {$V_{\x}$};
+  }
+  \draw (N0) ++(0, -0.2) node[above] {$0$};
+  \draw (N4) ++(0, -0.2) node[above] {$0$};
+  \draw (2.5, 0) node[above] {$\cdots$};
+
+  \foreach \x in {0, 1, 2, 3, 4} {
+    \draw[->, draw=blue!60!green] (\x, 0.2).. controls (\x + 0.5, 1) and (\x + 1, 1).. (\x + 1, 0.2);
+    \draw[->, draw=blue!60!green] (\x, 0.2).. controls (\x - 0.5, 1) and (\x - 1, 1).. (\x - 1, 0.2);
+    \draw (\x + 0.5, 1) node[above, draw=none, fill=none, color=blue!60!green] {$e$};
+  }
+
+  \foreach \x in {0, 1, 2} {
+    \draw[->, draw=orange] (\x, -0.2).. controls (\x - 0.5, -1) and (\x - 1, -1).. (\x - 1, -0.2);
+    \draw (\x - 0.5, -1) node[below, draw=none, fill=none, color=orange] {$f$};
+  }
+  \draw[->, draw=orange] (4, -0.2).. controls (4 - 0.5, -1) and (4 - 1, -1).. (4 - 1, -0.2);
+  \draw (4 - 0.5, -1) node[below, draw=none, fill=none, color=orange] {$f$};
+
+  \draw[->, draw=green!60!black] (0, 0.2).. controls (0 + 0.5, 2) and (0 + 1, 2).. (0 + 1, 0.2);
+  \draw (0 + 0.5, 2) node[above, draw=none, fill=none, color=green!60!black] {$h$};
+  \draw[->, draw=green!60!black] (1, 0.2).. controls (1 + 0.5, 2) and (1 + 1, 2).. (1 + 1, 0.2);
+  \draw (1 + 0.5, 2) node[above, draw=none, fill=none, color=green!60!black] {$h$};
+  \draw[->, draw=green!60!black] (2, 0.2).. controls (2 + 0.5, 2) and (2 + 1, 2).. (2 + 1, 0.2);
+  \draw (2 + 0.5, 2) node[above, draw=none, fill=none, color=green!60!black] {$h$};
+  \draw[->, draw=green!60!black] (3, 0.2).. controls (3 + 0.5, 2) and (3 + 1, 2).. (3 + 1, 0.2);
+  \draw (3 + 0.5, 2) node[above, draw=none, fill=none, color=green!60!black] {$h$};
+\end{tikzpicture}
+
+\end{document}

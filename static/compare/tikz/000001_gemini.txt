@@ -1,0 +1,57 @@
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{amsmath}
+
+\begin{document}
+
+\begin{tikzpicture}[
+    % Define styles for the nodes and arrows
+    vnode/.style={circle, fill=green!50!black, draw=black, inner sep=1.5pt},
+    hloop/.style={->, green!50!black, thick, looseness=15},
+    earrow/.style={->, blue!60!cyan!80!black, thick, bend left=45},
+    farrow/.style={->, orange!80!black, thick, bend left=45},
+    labelnode/.style={font=\Large}
+]
+
+  % Define coordinates for the main nodes
+  \node[vnode] (V0) at (0,0) {};
+  \node[vnode] (V1) at (2,0) {};
+  \node[vnode] (V2) at (4,0) {};
+  \node[labelnode] (dots) at (5.5,0) {$\dots$};
+  \node[vnode] (Vn-1) at (7,0) {};
+  \node[vnode] (Vn) at (9,0) {};
+
+  % Labels for the vector spaces
+  \node[above=4pt, labelnode] at (V0) {$V_0$};
+  \node[above=4pt, labelnode] at (V1) {$V_1$};
+  \node[above=4pt, labelnode] at (V2) {$V_2$};
+  \node[above=4pt, labelnode] at (Vn-1) {$V_{n-1}$};
+  \node[above=4pt, labelnode] at (Vn) {$V_n$};
+
+  % Zero nodes at the ends
+  \node[labelnode] (Zleft) at (-2.5,0) {$0$};
+  \node[labelnode] (Zright) at (11.5,0) {$0$};
+
+  % Green loops (h)
+  \foreach \n in {V0, V1, V2, Vn-1, Vn} {
+    \draw[hloop] (\n) to [out=120, in=60] (\n);
+    \node[green!50!black, labelnode, above=1.8cm] at (\n) {$h$};
+  }
+
+  % Blue arrows (e)
+  \draw[earrow] (V0) to node[midway, above, blue!60!cyan!80!black, labelnode] {$e$} (V1);
+  \draw[earrow] (V1) to node[midway, above, blue!60!cyan!80!black, labelnode] {$e$} (V2);
+  \draw[earrow] (Vn-1) to node[midway, above, blue!60!cyan!80!black, labelnode] {$e$} (Vn);
+  
+  % Partial blue arrow to the right
+  \draw[->, blue!60!cyan!80!black, thick] (Vn) to [bend left=45] (11.4,0.3);
+
+  % Orange arrows (f)
+  \draw[farrow] (V0) to node[midway, below, orange!80!black, labelnode] {$f$} (Zleft);
+  \draw[farrow] (V1) to node[midway, below, orange!80!black, labelnode] {$f$} (V0);
+  \draw[farrow] (V2) to node[midway, below, orange!80!black, labelnode] {$f$} (V1);
+  \draw[farrow] (Vn) to node[midway, below, orange!80!black, labelnode] {$f$} (Vn-1);
+
+\end{tikzpicture}
+
+\end{document}

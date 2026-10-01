@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usetikzlibrary{decorations}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{arrows,backgrounds,automata}
+\usepgflibrary{plotmarks}
+\usetikzlibrary{trees}
+\usetikzlibrary{patterns}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=1, ultra thick]
+\draw[fill=yellow!30, dashed] (-1,-1.5) rectangle (6,2);
+\draw[fill=green!30] (-0.5,-0.75) rectangle (3.5,1.5);
+\draw[fill=blue!30] (0,0) rectangle (1,1);
+\draw[fill=blue!30] (2,0) rectangle (3,1);
+\draw[fill=blue!30] (5,0) rectangle (6,1);
+\node at (-1.2,2.3) {Initial State};
+\node at (1.5,2.3) {$A$};
+\node at (-1.2,0.5) {$\mathbf{b}$};
+\node at (6.5,0.5) {$\widehat{\mathbf{x}}$};
+\node at (3.5,1.2) {Quantum Simulation};
+\node[red] at (2,-1.2) {End-to-End: $\mathcal{O}(T_r(\kappa(T_b+T_s)))$};
+\node[blue] at (2,-0.5) {HIL: $\mathcal{O}(\kappa(T_b+T_s))$};
+\node at (5,1.2) {Read Out};
+\draw[->] (-1,0.5) -- (0,0.5);
+\draw[->] (1,0.5) -- (2,0.5);
+\draw[->] (3,0.5) -- (3.5,0.5);
+\draw[->] (6,0.5) -- (6.5,0.5);
+\draw[->] (1,2) -- (1,1);
+\draw[->] (3,2) -- (3,1);
+\node at (0.5,0.5) {$\mathcal{O}(T_b)$};
+\node at (2.5,0.5) {$\mathcal{O}(T_s)$};
+\node at (5.5,0.5) {$\mathcal{O}(T_r)$};
+\node at (3.5,0.5) {$\mathbf{\hat{x}}$};
+\end{tikzpicture}
+
+\end{document}

@@ -60,7 +60,7 @@ function setQualMode(gridId, mode, button) {
     });
     button.classList.add('is-active');
 
-    const caption = document.getElementById(gridId.replace('qual-grid-', 'qual-caption-'));
+    const caption = document.getElementById(gridId.replace('-grid-', '-caption-'));
     if (caption && button.dataset.caption) {
         caption.textContent = button.dataset.caption;
     }

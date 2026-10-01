@@ -1,0 +1,36 @@
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{quantikz}
+
+\begin{document}
+
+\begin{tikzpicture}
+\draw [fill=green!40] (-1,0.5) rectangle (3.5,2);
+\draw [fill=yellow!40] (-1,-1.5) rectangle (5.5,2.5);
+\draw [dashed, thick] (-1.2,-1.7) rectangle (5.7,2.7);
+\draw [fill=blue!30] (0,0) rectangle (1,1);
+\draw [fill=blue!30] (2,0) rectangle (3,1);
+\draw [fill=blue!30] (4,0) rectangle (5,1);
+\node at (0.5,0.5) {$O(T_b)$};
+\node at (2.5,0.5) {$O(T_s)$};
+\node at (4.5,0.5) {$O(T_r)$};
+\node at (2.5,1.5) {\small Quantum Simulation};
+\node at (4.5,1.5) {\small Read Out};
+\node at (1,-0.5) {\small HHL : $O(\kappa(T_b+T_s))$};
+\node at (2.5,-1.5) {\color{red}\small End-to-End : $O\left(T_r\left(\kappa(T_b+T_s)\right)\right)$};
+\node at (-0.5,2.5) {\small Initial State: \quad $|\psi_o\rangle$};
+\node at (2.5,2.5) {\small $A$};
+\draw [->, thick] (-1.5,0.5) -- (-0.5,0.5);
+\draw [->, thick] (1,0.5) -- (2,0.5);
+\draw [->, thick] (3,0.5) -- (3.5,0.5);
+\draw [->, thick] (4.5,0.5) -- (5,0.5);
+\draw [->, thick] (5,0.5) -- (5.5,0.5);
+\draw [->, thick] (0.5,2) -- (0.5,1.5);
+\draw [->, thick] (2.5,2) -- (2.5,1.5);
+\node at (-1.5,0.5) {\textbf{b}};
+\node at (5.5,0.5) {\textbf{$\widehat{\mathbf{x}}$}};
+\node at (3.5,0.5) {$|\widehat{\mathbf{x}}\rangle$};
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,28 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{patterns}
+\usetikzlibrary{calc}
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.pathreplacing,angles,quotes}
+
+\begin{document}
+
+\begin{tikzpicture}
+\draw[thick,->] (0,0) -- (3,0);
+\draw[thick,->] (0,0) -- (0,3);
+\draw[thick,->] (0,0) -- (-3,0);
+\draw[thick,->] (0,0) -- (0,-3);
+\draw (0,0) circle (2);
+\draw [dashed] (0,0) circle (1.5);
+\node [below] at (1.5,0) {$1$};
+\node [below] at (0.3,0) {$\frac{M}{M+1}$};
+\draw[fill=black] (0,0) circle (0.05);
+\node [above] at (-1,3) {y axis};
+\node [right] at (3,0) {x axis};
+\end{tikzpicture}
+
+\end{document}

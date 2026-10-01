@@ -1,0 +1,22 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{tikz}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=1.5]
+\draw[fill=gray!30,gray!30] (0,0) circle (1);
+\draw[thick,<->] (-2,0) -- (2,0);
+\draw (2,-0.3) node {x axis};
+\draw[thick,<->] (0,-2) -- (0,2);
+\draw (-0.6,2.1) node {y axis};
+\draw[dashed] (0,0) circle (1);
+\draw[thick] (0,0) circle (1.5);
+\fill (0,0) circle (1pt);
+\draw (0.1,-0.28) node {$\frac{M}{M+1}$};
+\draw (1.6,-0.2) node {1};
+\end{tikzpicture}
+
+\end{document}

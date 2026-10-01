@@ -251,6 +251,60 @@ a.link-btn:hover {
   color: var(--color-muted);
 }
 
+/* --- Comparisons grid (HTML layout) --- */
+.cmp-grid-wrap {
+  overflow-x: auto;
+  margin-top: 1.75rem;
+}
+
+.cmp-grid {
+  display: grid;
+  row-gap: 0.5rem;
+  column-gap: 0.6rem;
+}
+
+.cmp-col-label {
+  text-align: center;
+  font-size: 1.15rem;
+  line-height: 1.25;
+  color: var(--color-text);
+}
+
+.cmp-col-label.is-bold {
+  font-weight: 700;
+}
+
+.cmp-thumb {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border: 1px dashed var(--color-card-border);
+  border-radius: 10px;
+  background: var(--color-code-bg);
+  overflow: hidden;
+}
+
+.cmp-view {
+  display: none;
+  position: absolute;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-muted);
+  font-size: 0.8rem;
+}
+
+.cmp-grid[data-mode="image"] .cmp-view-image {
+  display: flex;
+}
+
+.cmp-grid[data-mode="gif"] .cmp-view-gif {
+  display: flex;
+}
+
+.cmp-grid[data-mode="code"] .cmp-view-code {
+  display: flex;
+}
+
 /* --- Qualitative results grid --- */
 .qual-toggle-wrap {
   text-align: center;
@@ -340,19 +394,23 @@ a.link-btn:hover {
   display: none;
 }
 
-.qual-grid[data-mode="image"] .qual-view-image {
+.qual-grid[data-mode="image"] .qual-view-image,
+.cmp-grid[data-mode="image"] .qual-view-image {
   display: block;
 }
 
-.qual-grid[data-mode="gif"] .qual-view-gif {
+.qual-grid[data-mode="gif"] .qual-view-gif,
+.cmp-grid[data-mode="gif"] .qual-view-gif {
   display: block;
 }
 
-.qual-grid[data-mode="code"] .qual-view-code {
+.qual-grid[data-mode="code"] .qual-view-code,
+.cmp-grid[data-mode="code"] .qual-view-code {
   display: flex;
 }
 
-.qual-grid[data-mode="code"] .qual-view-code-btn {
+.qual-grid[data-mode="code"] .qual-view-code-btn,
+.cmp-grid[data-mode="code"] .qual-view-code-btn {
   display: block;
 }
 

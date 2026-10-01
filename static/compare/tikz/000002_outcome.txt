@@ -1,0 +1,34 @@
+\documentclass{article}
+\usepackage{amsmath,amsfonts,bm}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows}
+\usetikzlibrary{calc}
+\usetikzlibrary{fit}
+\usetikzlibrary{shapes}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{patterns}
+\usetikzlibrary{matrix}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=0.8]
+\draw[->,very thick] (-1.5,0) node[left] {$\mathbf{b}$} -- (0,0);
+\draw[thick,fill=blue!30] (0,-0.8) rectangle (1.5,0.8) node[midway] {$\mathcal{O}(T_b)$};
+\draw[->,very thick] (1.5,0) -- (3,0);
+\draw[thick,fill=blue!30] (3,-0.8) rectangle (4.5,0.8) node[midway] {$\mathcal{O}(T_s)$};
+\draw[->,very thick] (4.5,0) -- (5.2,0) node[right] {$\mathbf{\hat{x}}$};
+\draw[thick,fill=blue!30] (6.5,-0.8) rectangle (8,0.8) node[midway] {$\mathcal{O}(T_r)$};
+\draw[->,very thick] (8,0) -- (9,0) node[right] {$\widehat{\mathbf{x}}$};
+\node[above] at (7.25,0.5) {Read Out};
+\node[above] at (3.75,0.8) {Quantum Simulation};
+\node[above] at (3.75,2) {$A$};
+\draw[->,very thick] (3.75,2) -- (3.75,0.8);
+\draw[->,very thick] (1.5,2.2) node[above] {Initial State: $\ket{\Psi_0}$} -- (1.5,0.8);
+\draw[dashed,thick,fill=yellow!30] (-0.5,-2.5) rectangle (8.5,2.2);
+\node[red] at (3.75,-2.2) {End-to-End: $\mathcal{O}(T_r(\mathbf{\hat{x}}(T_b+T_s)))$};
+\node[blue] at (3.2,-1.2) {HII: $\mathcal{O}(\kappa(T_b+T_s))$};
+\end{tikzpicture}
+
+\end{document}

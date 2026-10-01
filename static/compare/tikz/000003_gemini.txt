@@ -1,0 +1,40 @@
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{amsmath}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=1.5, >=stealth]
+  % Define parameters for the circles
+  % Outer circle radius R
+  \def\R{2}
+  % Center of the inner circle c = M/(M+1) * R
+  % Visually, the center is slightly to the right of the origin.
+  % Let's choose a value that matches the proportions of the image.
+  \def\c{0.6}
+  \def\r{\R - \c} % Inner circle radius to touch at x = R
+
+  % Draw the shaded inner circle first so it's behind the axes
+  \fill[gray!30] (\c, 0) circle (\r);
+  \draw[dashed] (\c, 0) circle (\r);
+
+  % Draw the outer circle
+  \draw (0,0) circle (\R);
+
+  % Draw the axes
+  \draw[<->, thick] (-\R-0.5, 0) -- (\R+0.5, 0) node[below right] {x axis};
+  \draw[<->, thick] (0, -\R-0.5) -- (0, \R+0.5) node[above left] {y axis};
+
+  % Draw the center dot of the inner circle
+  \fill (\c, 0) circle (1.2pt);
+
+  % Add labels
+  % Label for the center of the inner circle
+  \node[below, yshift=-2pt] at (\c, 0) {$\dfrac{M}{M+1}$};
+  
+  % Label for the point 1 on the x-axis
+  \node[below right] at (\R, 0) {1};
+
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,51 @@
+\documentclass{article}
+\usepackage{amsmath,amsfonts,bm}
+\usepackage{amsmath,amsfonts,amssymb,mathtools}
+\usepackage{tikz}
+\usetikzlibrary{decorations.text}
+\usetikzlibrary{arrows.meta}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+
+\begin{document}
+
+    \begin{tikzpicture}[node distance=1cm, scale=1.0, every node/.style={transform shape}]
+\tikzstyle{block} = [rectangle, thick, minimum height=1.2cm, minimum width=1.2cm, align=center, draw=black]
+\tikzstyle{symbol} = [align=center, minimum height=1.2cm]
+\tikzstyle{arrow} = [thick,->,-{Latex[scale=1.5]}]
+
+
+\node[text width=4cm,align=center] at (0.25, 2.8) {Initial State: $\left|\Psi_0\right>$};
+\node[text width=4cm,align=center] at (4, 2.8) {$A$};
+\node[block, fill=blue!25] at (2,1) (symbolic) {$\mathcal{O}(T_b)$};
+\node[block, fill=blue!25] at (4.5,1) (symbolic_A) {$\mathcal{O}(T_s)$};
+
+\node[symbol] at (-0.5,1) (symbolic_b) {$\mathbf{b}$};
+\node[symbol] at (6,1) (symbolic_x) {$\left|\tilde{\mathbf{x}}\right>$};
+\node[symbol] at (7.5,1) (symbolic_X) {$\hat{\mathbf{x}}$};
+
+\node[block, minimum height=2.7cm, minimum width=5.7cm, draw=black, fill=yellow!25, dashed] at (3.25, 0.65) (background) {};
+\node[align=center] at (3.25,-0.2) {\textcolor{red}{End-to-End: $\mathcal{O}(T_\textrm{end}) = \mathcal{O}(T_r + T_s)$}};
+
+\node[block, minimum height=1.7cm, minimum width=3.85cm, draw=black, fill=green!25] at (2.7, 0.65) (subpicture) {};
+\node[align=center] at (3.25,0.1) {\textcolor{blue}{HHL: $\mathcal{O}(\kappa(T_b + T_s))$}};
+
+
+\node[block, fill=blue!25] at (6.8,1) (symbolic_R) {$\mathcal{O}(T_r)$};
+
+\node at (6.1, 1.7) {Read Out};
+
+
+
+
+
+\draw[arrow] (symbolic_b) -- (symbolic);
+\draw[arrow] (symbolic) -- (symbolic_A);
+\draw[arrow] (symbolic_A) -- (symbolic_x);
+\draw[arrow] (symbolic_x) -- (symbolic_R);
+\draw[arrow] (symbolic_A) -- (4.5, 2.5);
+\draw[arrow] (2, 2.5) -- (symbolic);
+\draw[arrow] (symbolic_R) -- (7.2,1);
+\end{tikzpicture}
+
+\end{document}

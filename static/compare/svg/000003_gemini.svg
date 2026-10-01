@@ -1,0 +1,23 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Bottle Body and Neck -->
+  <path d="M208 110h96v70c0 20 15 35 35 35h33c33 0 60 27 60 60v125c0 33-27 60-60 60H140c-33 0-60-27-60-60V275c0-33 27-60 60-60h33c20 0 35-15 35-35V110z" fill="#f2f0e6" stroke="#a8ced2" stroke-width="14" stroke-linejoin="round"/>
+  
+  <!-- Liquid inside the bottle -->
+  <path d="M80 330v70c0 33 27 60 60 60h232c33 0 60-27 60-60v-70H80z" fill="#40a0a8"/>
+  
+  <!-- Paper Boat -->
+  <!-- Left Wing -->
+  <path d="M163 258l93 72h-65z" fill="#e08e2b"/>
+  <!-- Right Wing -->
+  <path d="M349 258l-93 72h65z" fill="#f7b864"/>
+  <!-- Center Sail -->
+  <path d="M256 224l-65 106h130z" fill="#f0a340"/>
+  <!-- Bottom Fold Shadows -->
+  <path d="M191 330l65-35 65 35z" fill="#e08e2b" opacity="0.2"/>
+
+  <!-- Bottle Rim -->
+  <rect x="197" y="89" width="118" height="24" rx="10" fill="#40a0a8"/>
+  
+  <!-- Cork -->
+  <path d="M212 57c0-5 4-9 9-9h70c5 0 9 4 9 9v32h-88V57z" fill="#c97c6a"/>
+</svg>

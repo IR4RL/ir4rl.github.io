@@ -1,0 +1,36 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Graduation Cap Bottom -->
+  <path d="M150 225H362V310H150V225Z" fill="#2B3E50"/>
+  
+  <!-- Graduation Cap Top -->
+  <path d="M256 120L436 190L256 260L76 190L256 120Z" fill="#3C5471"/>
+  
+  <!-- Cap Top Detail -->
+  <rect x="252" y="176" width="64" height="14" rx="7" fill="#2B3E50" opacity="0.3"/>
+  
+  <!-- Tassel -->
+  <path d="M396 190V245" stroke="#2B3E50" stroke-width="12" stroke-linecap="round"/>
+  <path d="M383 245C383 245 380 280 396 280C412 280 409 245 409 245H383Z" fill="#2B3E50"/>
+  
+  <!-- Diploma Scroll -->
+  <path d="M94 297H418C429.046 297 438 305.954 438 317V360C438 371.046 429.046 380 418 380H94C82.9543 380 74 371.046 74 360V317C74 305.954 82.9543 297 94 297Z" fill="#F5E9D3"/>
+  <ellipse cx="94" cy="338.5" rx="18" ry="41.5" fill="#D9CBB3"/>
+  
+  <!-- Ribbon Bow -->
+  <!-- Left Loop -->
+  <path d="M256 338C256 338 210 300 195 315C180 330 220 355 256 338Z" fill="#E14D43"/>
+  <path d="M215 325C215 325 205 315 210 320C215 325 225 335 215 325Z" fill="#F5E9D3" opacity="0.5"/>
+  
+  <!-- Right Loop -->
+  <path d="M256 338C256 338 302 300 317 315C332 330 292 355 256 338Z" fill="#E14D43"/>
+  <path d="M297 325C297 325 307 315 302 320C297 325 287 335 297 325Z" fill="#F5E9D3" opacity="0.5"/>
+  
+  <!-- Left Tail -->
+  <path d="M256 338L202 385L225 400L240 385L256 338Z" fill="#E14D43"/>
+  
+  <!-- Right Tail -->
+  <path d="M256 338L310 385L287 400L272 385L256 338Z" fill="#E14D43"/>
+  
+  <!-- Center Knot -->
+  <rect x="243" y="315" width="26" height="42" rx="10" fill="#F06050"/>
+</svg>

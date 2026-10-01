@@ -1,0 +1,33 @@
+\documentclass[tikz, border=1pt]{standalone}
+
+\usepackage{xcolor}
+\definecolor{ForestGreen}{RGB}{34,139,34}
+\definecolor{BurntOrange}{RGB}{255,69,0}
+
+\begin{document}
+\begin{tikzpicture}[scale=1.25]
+  \draw (0, 0) node (V0) {$0$};
+  \draw (1, 0) node (V1) {$V_0$};
+  \draw (2, 0) node (V2) {$V_1$};
+  \draw (3, 0) node (V3) {$V_2$};
+  \draw (4, 0) node (V4) {$V_{n-1}$};
+  \draw (5, 0) node (V5) {$V_n$};
+  \draw (5.5, 0) node (V6) {$0$};
+
+  \foreach \j [count=\i] in {0, 1, 2, 3, 4}
+    \draw (V\j) ++(.5, 0) node (d\j) {$\bullet$}
+      (d\j) ++(0, -.25) node (b\j) {$\underbrace{\hphantom{\textcolor{ForestGreen}{b}\hphantom{c}}}$}
+      (d\j) ++(0, -.45) node (f\j) {$\underbrace{\hphantom{\textcolor{BurntOrange}{f}\hphantom{c}}}$};
+
+  \foreach \i in {0, 1, 2, 3, 4}
+    \draw[->, Cerulean] (d\i) ++(0,.1) to[out=70, in=110] node[above, pos=.45, shift={(0,.025)}] {$e$} (d\i+1);
+
+  \foreach \i in {1, 2, 3, 4, 5}
+    \draw[->, BurntOrange] (f\i) ++(0,.1) to[out=-70, in=-110] node[below, pos=.45, shift={(0, -.025)}] {$f$} (f\i-1);
+
+  \foreach \i in {1, 2, 3, 4, 5}
+    \draw[->, ForestGreen] (V\i) ++(0,.1) to[out=110, in=70, min distance=65] node[above, pos=.5, shift={(0,.05)}] {$h$} (V\i+1);
+
+  \draw (3.5, 0) node {$\dots$};
+\end{tikzpicture}
+\end{document}

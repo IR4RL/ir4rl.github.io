@@ -1,0 +1,14 @@
+\documentclass[tikz]{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+\draw[<->, thick] (-2,0) -- (2,0) node[anchor=north west] {x axis};
+\draw[<->, thick] (0,-2) -- (0,2) node[anchor=south east] {y axis};
+\draw (0,0) circle [radius=1.5];
+\draw[dashed] (0,0) circle [radius=0.75];
+\fill[gray!30] (0,0) circle [radius=0.75];
+\node at (1.5,0) {1};
+\fill (0,0) circle (1.5pt);
+\node at (0,-0.2) {$\frac{M}{M+1}$};
+\end{tikzpicture}
+\end{document}

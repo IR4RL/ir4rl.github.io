@@ -1,0 +1,32 @@
+\documentclass[tikz]{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}[scale=2]
+  \node (V0) at (0,0) {$V_0$};
+  \node (V1) at (1,0) {$V_1$};
+  \node (V2) at (2,0) {$V_2$};
+  \node (Vn1) at (3.5,0) {$V_{n-1}$};
+  \node (Vn) at (4.5,0) {$V_n$};
+  \draw[<-,green!50!black] (V0) to [out=135,in=45,looseness=10] node[above]{$h$} (V0);
+  \draw[<-,green!50!black] (V1) to [out=135,in=45,looseness=10] node[above]{$h$} (V1);
+  \draw[<-,green!50!black] (V2) to [out=135,in=45,looseness=10] node[above]{$h$} (V2);
+  \draw[<-,green!50!black] (Vn1) to [out=135,in=45,looseness=10] node[above]{$h$} (Vn1);
+  \draw[<-,green!50!black] (Vn) to [out=135,in=45,looseness=10] node[above]{$h$} (Vn);
+  \draw[<-,blue!50!black] (V0) to [out=30,in=150] node[above]{$e$} (V1);
+  \draw[<-,blue!50!black] (V1) to [out=30,in=150] node[above]{$e$} (V2);
+  \draw[<-,blue!50!black] (Vn1) to [out=30,in=150] node[above]{$e$} (Vn);
+  \draw[<-,blue!50!black] (Vn) to [out=30,in=150] node[above]{$e$} (5,0);
+  \draw[<-,orange!75!black] (V0) to [out=-150,in=-30] node[below]{$f$} (-1,0);
+  \draw[<-,orange!75!black] (V1) to [out=-150,in=-30] node[below]{$f$} (0,0);
+  \draw[<-,orange!75!black] (V2) to [out=-150,in=-30] node[below]{$f$} (1,0);
+  \draw[<-,orange!75!black] (Vn1) to [out=-150,in=-30] node[below]{$f$} (3.5,0);
+  \draw[fill=green!50!black] (V0) circle [radius=0.05];
+  \draw[fill=green!50!black] (V1) circle [radius=0.05];
+  \draw[fill=green!50!black] (V2) circle [radius=0.05];
+  \draw[fill=green!50!black] (Vn1) circle [radius=0.05];
+  \draw[fill=green!50!black] (Vn) circle [radius=0.05];
+  \node at (2.75,0) {$\cdots$};
+  \node at (-1,0) {0};
+  \node at (5.5,0) {0};
+\end{tikzpicture}
+\end{document}

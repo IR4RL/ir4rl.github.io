@@ -1,0 +1,30 @@
+\documentclass[aps,superscriptaddress,twocolumn,twoside,floatfix,pra,nofootinbib,a4paper]{revtex4}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage[T1]{fontenc}
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\begin{document}
+
+\begin{tikzpicture}
+\draw[fill=blue!30] (1,0.5) rectangle (2,1.5) node[pos=.5] {$\mathcal{O}(T_b)$};
+\draw[fill=blue!30] (3,0.5) rectangle (4,1.5) node[pos=.5] {$\mathcal{O}(T_s)$};
+\draw[fill=blue!30] (6,0.5) rectangle (7,1.5) node[pos=.5] {$\mathcal{O}(T_r)$};
+\draw[thick,->] (0,1) -- (1,1) node[left,pos=0] {$\mathbf{b}$};
+\draw[thick,->] (2,1) -- (3,1);
+\draw[thick,->] (4,1) -- (4.5,1) node[right,pos=0] {$|\mathbf{x}\rangle$};
+\draw[thick,->] (5.5,1) -- (6,1);
+\draw[thick,->] (7,1) -- (8,1) node[right,pos=1] {$\hat{\mathbf{x}}$};
+\draw[thick,->] (1.5,2.5) -- (1.5,1.5) node[above,pos=0] {$\begin{array}{c}\text{Initial State:} \\ |\Psi_0\rangle\end{array}$};
+\draw[thick,->] (3.5,2.5) -- (3.5,1.5) node[above,pos=0] {$A$};
+\node at (4.5,1.8) {\begin{tabular}{c} Quantum Simulation \end{tabular}};
+\node at (7,1.8) {\begin{tabular}{c} Read Out \end{tabular}};
+\draw[fill=yellow!30] (0.5,0) rectangle (7.5,2);
+\draw[dashed,thick] (0.5,-1) rectangle (7.5,2.5);
+\node at (3.5,-0.3) {\textcolor{blue}{HHL: $\mathcal{O}(\kappa(T_b+T_s))$}};
+\node at (3.5,-0.8) {\textcolor{red}{End-to-End: $\mathcal{O}(T_r(\kappa(T_b+T_s)))$}};
+\end{tikzpicture}
+
+\end{document}

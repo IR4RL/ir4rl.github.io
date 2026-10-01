@@ -1,0 +1,25 @@
+\documentclass[tikz, border=1pt]{standalone}
+\begin{document}
+\begin{tikzpicture}[scale=1.5]
+  \node at (0,0) {$0$};
+  \node[fill=green!50!black,circle,inner sep=1.5pt,draw,label=$V_0$] (v0) at (0.5,0) {};
+  \node[fill=green!50!black,circle,inner sep=1.5pt,draw,label=$V_1$] (v1) at (1.2,0) {};
+  \node[fill=green!50!black,circle,inner sep=1.5pt,draw,label=$V_2$] (v2) at (1.9,0) {};
+  \node at (2.4,0) {$\cdots$};
+  \node[fill=green!50!black,circle,inner sep=1.5pt,draw,label=$V_{n-1}$] (v3) at (2.8,0) {};
+  \node[fill=green!50!black,circle,inner sep=1.5pt,draw,label=$V_n$] (v4) at (3.5,0) {};
+  \node at (4,0) {$0$};
+  \draw[->, draw=blue!50!green] (v0) to [in=60,out=120,looseness=8] node[above] {$h$} (v0);
+  \draw[->, draw=blue!50!green] (v1) to [in=60,out=120,looseness=8] node[above] {$h$} (v1);
+  \draw[->, draw=blue!50!green] (v2) to [in=60,out=120,looseness=8] node[above] {$h$} (v2);
+  \draw[->, draw=blue!50!green] (v3) to [in=60,out=120,looseness=8] node[above] {$h$} (v3);
+  \draw[->, draw=blue!50!green] (v4) to [in=60,out=120,looseness=8] node[above] {$h$} (v4);
+  \draw[<->, draw=blue!50!green] (v0) to [in=150,out=30] node[above] {$e$} (v1);
+  \draw[<->, draw=blue!50!green] (v1) to [in=150,out=30] node[above] {$e$} (v2);
+  \draw[<->, draw=blue!50!green] (v3) to [in=150,out=30] node[above] {$e$} (v4);
+  \draw[->, draw=orange!50!brown] (v0) to [in=240,out=300,looseness=1] node[below] {$f$} (v1);
+  \draw[->, draw=orange!50!brown] (v1) to [in=240,out=300,looseness=1] node[below] {$f$} (v2);
+  \draw[->, draw=orange!50!brown] (v3) to [in=240,out=300,looseness=1] node[below] {$f$} (v4);
+  \draw[<-, draw=blue!50!green] (v4) to [in=30,out=150] node[above] {$e$} (4,0.3);
+\end{tikzpicture}
+\end{document}

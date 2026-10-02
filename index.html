@@ -37,10 +37,12 @@
   href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="static/css/index.css">
   <link rel="stylesheet" href="static/css/interactive.css">
+  <link rel="stylesheet" href="static/css/experimental.css">
 
   <script defer src="static/js/fontawesome.all.min.js"></script>
   <script src="static/js/index.js"></script>
   <script defer src="static/js/interactive-demo.js"></script>
+  <script defer src="static/js/experimental.js"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
@@ -164,25 +166,49 @@
 <!-- End paper abstract -->
 
 
-<!-- Paper Method -->
+<!-- IR4RL method, pinned to vertical scroll -->
 <section class="section" id="method">
-  <div class="container is-max-desktop is-centered has-text-centered">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-full">
-        <h2 class="title is-3">IR4RL</h2>
-        <figure class="image mt-5">
-          <img src="static/images/method.png" alt="IR4RL method overview">
-        </figure>
-        <div class="content has-text-justified mt-5">
-          <p>
-            Image-to-code generation unfolds as a sequence of helpful and harmful decisions. Rollouts 1 and 2 reach similar final quality through different trajectories, while Rollout 3 makes early progress that later operations reverse. Outcome-only advantage collapses this information into a single scalar reward, scoring all tokens within a rollout equally. Our method complements it with <strong>render-progress rewards</strong>, leveraging changes in visual score between consecutive renders (the arrows \(\Delta_j\)).
-          </p>
+  <div class="container is-max-widescreen">
+    <div class="exp-scrolly" id="exp-scrolly">
+      <div class="exp-scrolly-sticky" id="exp-scrolly-sticky">
+        <h2 class="title is-3 has-text-centered exp-pinned-heading">IR4RL</h2>
+        <div class="exp-scrolly-grid">
+          <div class="exp-outline" id="exp-outline" role="tablist" aria-label="Method build-up steps">
+            <button class="exp-outline-item is-active" data-step="0">
+              <span class="exp-outline-index">01</span>
+              <span class="exp-outline-label">What does outcome-level reward miss?</span>
+            </button>
+            <button class="exp-outline-item" data-step="1">
+              <span class="exp-outline-index">02</span>
+              <span class="exp-outline-label">Decisions in the generation trajectory</span>
+            </button>
+            <button class="exp-outline-item" data-step="2">
+              <span class="exp-outline-index">03</span>
+              <span class="exp-outline-label">Render-progress reward</span>
+            </button>
+          </div>
+          <div class="exp-main">
+            <div class="exp-flicker-wrap">
+              <img class="exp-flicker-img is-active" src="static/images/method_outcome.png" alt="Outcome-only advantage" data-step="0">
+              <img class="exp-flicker-img" src="static/images/method_interim.png" alt="Adding intermediate renders" data-step="1">
+              <img class="exp-flicker-img" src="static/images/method_full.png" alt="Adding render-progress reward" data-step="2">
+            </div>
+            <div class="exp-text-block">
+              <h3 class="exp-step-title" id="exp-step-title">What does outcome-level reward miss?</h3>
+              <p class="exp-step-text" id="exp-step-text">Outcome-level rendering-based reinforcement learning, commonly used as a post-training step for image-to-code VLMs, aims to provide visual grounding for the generated code. By comparing the final rendered output to the target image, it assigns a single score per generation, weighting all tokens within a rollout equally.</p>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="exp-scroll-track" id="exp-scroll-track">
+        <div class="exp-scroll-zone" data-step="0"></div>
+        <div class="exp-scroll-zone" data-step="1"></div>
+        <div class="exp-scroll-zone" data-step="2"></div>
       </div>
     </div>
   </div>
 </section>
-<!-- End Paper Method -->
+<!-- End IR4RL method -->
 
 
 <!-- Interactive Demo -->
